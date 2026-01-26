@@ -5,7 +5,7 @@ A Claude Code development environment using **everything-claude-code (ECC)** for
 ## Features
 
 - **13 Enhanced Agents** - Specialized agents for different task types
-- **19 Slash Commands** - Quick access to development workflows
+- **20 Slash Commands** - Quick access to development workflows
 - **6-Phase Development Workflow** - Structured approach from planning to deployment
 
 ## Quick Start
@@ -25,14 +25,14 @@ On first session, Claude prompts for project settings (scope, product type, obje
 instructions.md (context) + /plan (command) → context-aware planning
 ```
 
-## Slash Commands (19 total)
+## Slash Commands (20 total)
 
 | Category | Commands |
 |----------|----------|
 | **Core** | `/tdd`, `/plan`, `/code-review`, `/e2e`, `/build-fix`, `/refactor-clean` |
 | **Quality** | `/verify`, `/checkpoint`, `/test-coverage`, `/no-stubs`, `/real-testing` |
 | **Operations** | `/deploy`, `/setup-pm` |
-| **Documentation** | `/update-docs`, `/update-codemaps`, `/learn` |
+| **Documentation** | `/update-docs`, `/update-codemaps`, `/update-readme`, `/learn` |
 | **Advanced** | `/eval`, `/orchestrate`, `/create-command` |
 
 ## Complete Development Workflow
@@ -107,6 +107,7 @@ instructions.md (context) + /plan (command) → context-aware planning
 | Build broken | `/build-fix` |
 | Before committing | `/code-review` → `/verify` |
 | After major changes | `/update-codemaps` → `/update-docs` |
+| Updating project README | `/update-readme` |
 | Testing AI features | `/eval` |
 | Cleaning up | `/refactor-clean` |
 | Deploying | `/deploy` |
@@ -124,7 +125,7 @@ For quick tasks:
 ```
 jetflux-sdk/
 ├── .claude/
-│   ├── commands/         # 19 slash commands (/tdd, /plan, etc.)
+│   ├── commands/         # 20 slash commands (/tdd, /plan, etc.)
 │   ├── agents/           # 13 enhanced agents
 │   └── mcp-configs/      # MCP server configurations
 ├── CLAUDE.md             # Master directives
@@ -158,7 +159,7 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 
 - [CLAUDE.md](CLAUDE.md) - Master directives and all commands
 - [instructions.md](instructions.md) - Project setup template
-- [.claude/commands/](.claude/commands/) - All 19 slash command files
+- [.claude/commands/](.claude/commands/) - All 20 slash command files
 
 ## License
 
