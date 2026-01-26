@@ -563,3 +563,48 @@ echo "Completed: $(date)" >> todos/completed/TODO-XXX.md
 - **Respect single source of truth**: GitHub for requirements, todos for implementation
 - **Use labels effectively**: Make issues discoverable through proper categorization
 - **Update in real-time**: Don't batch status updates, sync as changes happen
+
+---
+
+## GitHub/Todo Synchronization
+
+### Core Principles
+- **GitHub Issues** = source of truth for REQUIREMENTS
+- **Local Todos** = source of truth for IMPLEMENTATION STATUS
+- Bidirectional sync at key trigger points
+
+### Naming Convention (CRITICAL)
+- Story numbers MUST match TODO numbers exactly
+- TODO-001 = Story 1 (no exceptions)
+- Sub-issues format: "Story N (sub-issue): Descriptive Title"
+
+### Sync Triggers
+1. **Starting work** on a story → Create local todo, update GitHub status
+2. **Completing a story** → Mark todo done, close GitHub issue
+3. **Sprint planning** → Create GitHub issues, generate todos
+4. **Daily standup** → Sync status both directions
+5. **Blocker encountered** → Update both systems with blocker label/status
+6. **Scope change** → Update GitHub issue, regenerate affected todos
+
+### Sync Commands
+```bash
+# Get issue details
+gh issue view <number> --json title,body,labels,state
+
+# Update issue status
+gh issue edit <number> --add-label "in-progress"
+gh issue edit <number> --remove-label "in-progress" --add-label "done"
+
+# Close issue when complete
+gh issue close <number> --comment "Completed in PR #X"
+
+# Create sub-issue
+gh issue create --title "Story N (sub-issue): Title" --body "Parent: #N"
+```
+
+### Conflict Resolution
+| Scenario | Resolution |
+|----------|------------|
+| Status mismatch | GitHub wins for requirements, Local wins for implementation |
+| Missing link | Add link immediately, audit both systems |
+| Duplicate stories | Keep lower number, close duplicate with reference |

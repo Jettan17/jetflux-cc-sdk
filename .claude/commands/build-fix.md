@@ -1,3 +1,10 @@
+---
+description: Incrementally fix TypeScript and build errors
+ecc_base_version: "5230892"
+last_synced: "2026-01-26"
+customizations: "Agent escalation section added"
+---
+
 # Build and Fix
 
 Incrementally fix TypeScript and build errors:
@@ -35,10 +42,10 @@ This command automatically escalates to specialized agents when:
 | Condition | Agent | Purpose |
 |-----------|-------|---------|
 | Complex build failures | **build-error-resolver** | Deep analysis of systemic build issues |
-| React build errors | **react-specialist** | Next.js/React 19 build configurations |
+| React build errors | **ui-engineer** | Next.js/React 19 build configurations |
 | Type system issues | **architect** | TypeScript architecture decisions |
 
 ### Escalation Triggers
 - **build-error-resolver**: Use for persistent or complex build failures
-- **react-specialist**: Use for Next.js/React specific build issues
+- **ui-engineer**: Use for Next.js/React specific build issues
 - **architect**: Use when build errors indicate architectural problems

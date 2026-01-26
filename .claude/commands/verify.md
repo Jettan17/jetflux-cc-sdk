@@ -1,3 +1,10 @@
+---
+description: Run comprehensive verification on current codebase
+ecc_base_version: "5230892"
+last_synced: "2026-01-26"
+customizations: "Agent escalation section added"
+---
+
 # Verification Command
 
 Run comprehensive verification on current codebase state.
@@ -66,8 +73,8 @@ This command automatically escalates to specialized agents when:
 |-----------|-------|---------|
 | Standards compliance | **gold-standards-validator** | Pattern compliance, coding standards |
 | Real infrastructure testing | **testing-specialist** | NO MOCKING policy enforcement |
-| Security scan | **security-reviewer** | Vulnerability analysis |
+| Security scan | **security-auditor** | Vulnerability analysis |
 
 ### Escalation Triggers
 - **gold-standards-validator**: Use for SDK compliance validation, pattern enforcement
-- **security-reviewer**: Use for pre-PR security scans, auth/payment code
+- **security-auditor**: Use for pre-PR security scans, auth/payment code

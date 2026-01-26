@@ -1,5 +1,8 @@
 ---
 description: Docker and Kubernetes deployment setup. Containerize applications with production best practices.
+ecc_base_version: "5230892"
+last_synced: "2026-01-26"
+customizations: "Agent escalation section added"
 ---
 
 # /deploy - Deployment Setup

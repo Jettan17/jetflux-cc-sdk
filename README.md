@@ -4,8 +4,8 @@ A Claude Code development environment using **everything-claude-code (ECC)** for
 
 ## Features
 
-- **18 Specialized Agents** - 9 core + 9 enhanced agents
-- **18 Slash Commands** - Quick access to development workflows
+- **13 Enhanced Agents** - Specialized agents for different task types
+- **19 Slash Commands** - Quick access to development workflows
 - **6-Phase Development Workflow** - Structured approach from planning to deployment
 
 ## Quick Start
@@ -25,7 +25,7 @@ On first session, Claude prompts for project settings (scope, product type, obje
 instructions.md (context) + /plan (command) → context-aware planning
 ```
 
-## Slash Commands (18 total)
+## Slash Commands (19 total)
 
 | Category | Commands |
 |----------|----------|
@@ -33,7 +33,7 @@ instructions.md (context) + /plan (command) → context-aware planning
 | **Quality** | `/verify`, `/checkpoint`, `/test-coverage`, `/no-stubs`, `/real-testing` |
 | **Operations** | `/deploy`, `/setup-pm` |
 | **Documentation** | `/update-docs`, `/update-codemaps`, `/learn` |
-| **Advanced** | `/eval`, `/orchestrate` |
+| **Advanced** | `/eval`, `/orchestrate`, `/create-command` |
 
 ## Complete Development Workflow
 
@@ -110,6 +110,7 @@ instructions.md (context) + /plan (command) → context-aware planning
 | Testing AI features | `/eval` |
 | Cleaning up | `/refactor-clean` |
 | Deploying | `/deploy` |
+| Creating custom workflows | `/create-command` |
 
 ## Minimum Viable Workflow
 
@@ -123,9 +124,8 @@ For quick tasks:
 ```
 jetflux-sdk/
 ├── .claude/
-│   ├── commands/         # 18 slash commands (/tdd, /plan, etc.)
-│   ├── agents/           # 9 enhanced agents
-│   ├── guides/           # Specialized guides
+│   ├── commands/         # 19 slash commands (/tdd, /plan, etc.)
+│   ├── agents/           # 13 enhanced agents
 │   └── mcp-configs/      # MCP server configurations
 ├── CLAUDE.md             # Master directives
 ├── instructions.md       # Project setup template
@@ -135,9 +135,9 @@ jetflux-sdk/
 ## Available Agents
 
 ### Core Agents
-Planner, Architect, TDD Guide, Code Reviewer, Security Reviewer, Build Error Resolver, E2E Runner, Refactor Cleaner, Doc Updater
+Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, Refactor Cleaner, Doc Updater
 
-### Enhanced Agents
+### Enhanced Agents (13 total)
 | Agent | Purpose |
 |-------|---------|
 | ultrathink-analyst | Deep failure analysis |
@@ -147,14 +147,18 @@ Planner, Architect, TDD Guide, Code Reviewer, Security Reviewer, Build Error Res
 | todo-manager | Task management |
 | gh-manager | GitHub Projects integration |
 | deployment-specialist | Docker/K8s deployment |
-| react-specialist | React 19/Next.js 15 |
+| ui-engineer | UI/UX, React 19, Next.js 15, accessibility |
 | flutter-specialist | Flutter mobile |
+| security-auditor | OWASP Top 10, vulnerability scanning |
+| deep-reflector | Session analysis, learning capture |
+| gold-standards-validator | Code compliance enforcement |
+| documentation-validator | Documentation accuracy checking |
 
 ## Documentation
 
 - [CLAUDE.md](CLAUDE.md) - Master directives and all commands
 - [instructions.md](instructions.md) - Project setup template
-- [.claude/commands/](.claude/commands/) - All 18 slash command files
+- [.claude/commands/](.claude/commands/) - All 19 slash command files
 
 ## License
 

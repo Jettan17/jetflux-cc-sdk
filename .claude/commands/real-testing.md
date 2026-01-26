@@ -1,5 +1,8 @@
 ---
 description: Verify tests use real infrastructure. NO MOCKING policy for integration and E2E tests.
+ecc_base_version: "5230892"
+last_synced: "2026-01-26"
+customizations: "Agent escalation section added"
 ---
 
 # /real-testing - Real Infrastructure Testing

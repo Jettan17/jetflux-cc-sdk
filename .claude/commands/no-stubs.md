@@ -1,5 +1,8 @@
 ---
 description: Enforce no placeholder content. Verify all code is complete - no Lorem ipsum, TODO, Coming soon, or empty functions.
+ecc_base_version: "5230892"
+last_synced: "2026-01-26"
+customizations: "Agent escalation section added"
 ---
 
 # /no-stubs - No Stubs or Placeholders
@@ -59,10 +62,10 @@ This command automatically escalates to specialized agents when:
 | Condition | Agent | Purpose |
 |-----------|-------|---------|
 | Standards compliance | **gold-standards-validator** | Full codebase compliance scan |
-| UI completeness check | **react-specialist** | React component completeness validation |
+| UI completeness check | **ui-engineer** | React component completeness validation |
 | Documentation stubs | **documentation-validator** | Validate documentation completeness |
 
 ### Escalation Triggers
 - **gold-standards-validator**: Use for comprehensive stub/placeholder detection
-- **react-specialist**: Use for React UI completeness validation
+- **ui-engineer**: Use for React UI completeness validation
 - **documentation-validator**: Use to ensure documentation has no placeholders

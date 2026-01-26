@@ -1,5 +1,8 @@
 ---
 description: Enforce test-driven development workflow. Scaffold interfaces, generate tests FIRST, then implement minimal code to pass. Ensure 80%+ coverage.
+ecc_base_version: "5230892"
+last_synced: "2026-01-26"
+customizations: "Agent escalation section added"
 ---
 
 # TDD Command
@@ -331,10 +334,10 @@ This command automatically escalates to specialized agents when:
 | Condition | Agent | Purpose |
 |-----------|-------|---------|
 | Progress review needed | **intermediate-reviewer** | Milestone validation after TDD cycles |
-| React/Next.js testing | **react-specialist** | React 19 testing patterns, component tests |
+| React/Next.js testing | **ui-engineer** | React 19 testing patterns, component tests |
 | Flutter testing | **flutter-specialist** | Flutter widget testing, integration tests |
 
 ### Escalation Triggers
 - **intermediate-reviewer**: Use after completing significant TDD cycles to validate progress
-- **react-specialist**: Use for React/Next.js component testing patterns
+- **ui-engineer**: Use for React/Next.js component testing patterns
 - **flutter-specialist**: Use for Flutter widget and integration testing

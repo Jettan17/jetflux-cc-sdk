@@ -260,3 +260,51 @@ todo-manager marks complete → gh-manager closes issue
 - **Resolve conflicts** using established priority rules (GitHub = requirements, Local = status)
 - **Use TODO-{issue-number} format** when creating todos from GitHub issues
 - **Notify gh-manager** at all sync trigger points (start, progress, block, complete)
+
+---
+
+## GitHub/Todo Synchronization
+
+### Core Principles
+- **Local Todos** = source of truth for IMPLEMENTATION STATUS
+- **GitHub Issues** = source of truth for REQUIREMENTS
+- Sync with gh-manager at key milestones
+
+### Naming Convention (CRITICAL)
+- TODO numbers MUST match Story numbers exactly
+- TODO-001 = Story 1 (no exceptions)
+- Format: `TODO-{number}: {title} [Story #{issue-number}]`
+
+### Sync Workflow
+1. **Create todo** when starting GitHub issue work
+2. **Update status** as work progresses (pending → in_progress → completed)
+3. **Mark complete** and trigger gh-manager sync when done
+4. **Add blockers** to both todo and notify gh-manager
+
+### Todo Template for GitHub Issues
+```markdown
+## TODO-{number}: {Title}
+**GitHub Issue:** #{issue-number}
+**Status:** pending | in_progress | completed
+**Priority:** high | medium | low
+
+### Acceptance Criteria
+- [ ] Criteria from GitHub issue
+- [ ] Additional implementation details
+
+### Subtasks
+- [ ] Subtask 1
+- [ ] Subtask 2
+
+### Notes
+- Link to related issues
+- Implementation decisions
+```
+
+### Status Mapping
+| Todo Status | GitHub Label |
+|-------------|--------------|
+| pending | `ready` |
+| in_progress | `in-progress` |
+| blocked | `blocked` |
+| completed | `done` (then close issue) |

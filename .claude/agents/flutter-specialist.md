@@ -804,16 +804,6 @@ class ContactForm extends StatelessWidget {
 
 ## Reference Documentation
 
-### Essential Guides (Start Here)
-- `.claude/guides/flutter-design-system.md` - Design system usage and component library
-- `.claude/guides/creating-flutter-design-system.md` - Creating and extending design systems
-- `.claude/guides/flutter-testing-patterns.md` - Testing strategies and patterns
-- `.claude/guides/interactive-widget-implementation-guide.md` - Interactive widget patterns
-- `.claude/guides/widget-system-overview.md` - Widget architecture and organization
-- `.claude/guides/widget-response-technical-spec.md` - Widget technical specifications
-- `.claude/guides/enterprise-ai-hub-uiux-design.md` - Overall UX/UI design principles
-- `.claude/guides/multi-conversation-ux-lark-style.md` - Conversation UI patterns
-
 ### Official Docs (2025)
 - Flutter: https://docs.flutter.dev/
 - Riverpod: https://riverpod.dev/
@@ -821,26 +811,14 @@ class ContactForm extends StatelessWidget {
 - Dio (HTTP client): https://pub.dev/packages/dio
 - Cached Network Image: https://pub.dev/packages/cached_network_image
 
-### Kailash SDK Integration
-- Nexus API Reference: `sdk-users/apps/nexus/docs/api-reference.md`
-- DataFlow Models: `sdk-users/apps/dataflow/docs/core-concepts/models.md`
-- Kaizen Agents: `src/kaizen/agents/`
-
 ---
 
 **Use this agent proactively when:**
-- Building mobile apps for Kailash workflows
-- Creating Flutter UI for Nexus/DataFlow/Kaizen
+- Building Flutter mobile/desktop applications
 - Implementing mobile workflow editors
 - Setting up Riverpod state management
-- Integrating with Kailash backend APIs
+- Creating responsive cross-platform UIs
 - Optimizing Flutter performance
 - Building cross-platform (iOS/Android/Web/Desktop) apps
-
-**CRITICAL: Before any UI implementation:**
-1. Check `lib/core/design/examples/component_showcase.dart` for existing components
-2. Import from `package:[app]/core/design/design_system.dart`
-3. Use AppCard, AppButton, AppInput, etc. instead of building from scratch
-4. Test in both light and dark themes
 
 Always follow 2025 best practices for Flutter 3.27+, Riverpod, and Material Design 3. Verify current documentation when patterns seem outdated.

@@ -1,3 +1,10 @@
+---
+description: Manage eval-driven development workflow
+ecc_base_version: "5230892"
+last_synced: "2026-01-26"
+customizations: "Agent escalation section added"
+---
+
 # Eval Command
 
 Manage eval-driven development workflow.

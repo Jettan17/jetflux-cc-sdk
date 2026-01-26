@@ -24,16 +24,16 @@ This project uses the **everything-claude-code (ECC)** plugin for structured dev
 ### Plugin Status: INSTALLED ✓
 The everything-claude-code plugin is installed at `~/.claude/plugins/everything-claude-code/`
 
-### Available Slash Commands (18 total)
+### Available Slash Commands (19 total)
 | Command | Description |
 |---------|-------------|
 | `/tdd` | Test-driven development workflow |
 | `/plan` | Implementation planning |
 | `/e2e` | E2E test generation |
-| `/code-review` | Quality review |
+| `/code-review` | Quality review (local, PR, issue fix modes) |
 | `/build-fix` | Build error resolution |
 | `/refactor-clean` | Dead code removal |
-| `/learn` | Pattern extraction mid-session |
+| `/learn` | Pattern extraction with auto-detection |
 | `/checkpoint` | Verification state saving |
 | `/verify` | Verification loop execution |
 | `/setup-pm` | Package manager configuration |
@@ -45,6 +45,7 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 | `/no-stubs` | Enforce no placeholder content |
 | `/real-testing` | Real infrastructure testing (NO MOCKING) |
 | `/deploy` | Docker/Kubernetes deployment |
+| `/create-command` | Create new custom commands interactively |
 
 ---
 
@@ -57,13 +58,12 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 | **Architect** | System design decisions |
 | **TDD Guide** | Test-driven development methodology |
 | **Code Reviewer** | Quality and security assessment |
-| **Security Reviewer** | Vulnerability analysis |
 | **Build Error Resolver** | Construction failure fixing |
 | **E2E Runner** | Playwright testing automation |
 | **Refactor Cleaner** | Dead code elimination |
 | **Doc Updater** | Documentation synchronization |
 
-### Enhanced Agents
+### Enhanced Agents (13 total)
 | Agent | Purpose | When to Use |
 |-------|---------|-------------|
 | **ultrathink-analyst** | Deep failure analysis | Complex features, systemic issues |
@@ -73,8 +73,12 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 | **todo-manager** | Task management | Development task lists |
 | **gh-manager** | GitHub Projects integration | Sprint management |
 | **deployment-specialist** | Docker/Kubernetes deployment | Production deployments |
-| **react-specialist** | React 19/Next.js 15 patterns | Frontend implementation |
+| **ui-engineer** | UI/UX specialist (React 19, Next.js 15, accessibility) | Frontend implementation |
 | **flutter-specialist** | Flutter mobile patterns | Mobile/desktop apps |
+| **security-auditor** | OWASP Top 10, vulnerability scanning | Security reviews |
+| **deep-reflector** | Session analysis, learning capture | Pattern extraction |
+| **gold-standards-validator** | Code compliance enforcement | Standards validation |
+| **documentation-validator** | Documentation accuracy checking | Doc validation |
 
 ---
 
@@ -229,9 +233,10 @@ All commands are in `.claude/commands/`:
 | `/setup-pm` | Operations | Package manager setup |
 | `/update-docs` | Documentation | Documentation sync |
 | `/update-codemaps` | Documentation | Code map updates |
-| `/learn` | Documentation | Pattern extraction |
+| `/learn` | Documentation | Pattern extraction (auto-detect) |
 | `/eval` | Advanced | Evaluation harness |
 | `/orchestrate` | Advanced | Multi-agent coordination |
+| `/create-command` | Advanced | Create custom commands |
 
 ---
 

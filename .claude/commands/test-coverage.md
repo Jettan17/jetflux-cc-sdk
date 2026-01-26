@@ -1,3 +1,10 @@
+---
+description: Analyze test coverage and generate missing tests
+ecc_base_version: "5230892"
+last_synced: "2026-01-26"
+customizations: "Agent escalation section added"
+---
+
 # Test Coverage
 
 Analyze test coverage and generate missing tests:
