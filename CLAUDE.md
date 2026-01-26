@@ -15,7 +15,7 @@ This project uses the **everything-claude-code (ECC)** plugin for structured dev
    - Do NOT add custom "Other" options - duplicates will appear
    - Ask free-text questions (Objective, Data Sources) separately as regular questions
 4. **Update `instructions.md`** with their responses
-5. **Always reference Project Settings** when running commands
+5. **Always reference Project Settings and Must Do** when running commands
 
 **If Project Settings ARE filled**, acknowledge them and proceed with the user's request.
 
@@ -24,9 +24,10 @@ This project uses the **everything-claude-code (ECC)** plugin for structured dev
 ### Plugin Status: INSTALLED ✓
 The everything-claude-code plugin is installed at `~/.claude/plugins/everything-claude-code/`
 
-### Available Slash Commands (19 total)
+### Available Slash Commands (21 total)
 | Command | Description |
 |---------|-------------|
+| `/init` | Initialize new project or update SDK files |
 | `/tdd` | Test-driven development workflow |
 | `/plan` | Implementation planning |
 | `/e2e` | E2E test generation |
@@ -42,6 +43,7 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 | `/test-coverage` | Test coverage analysis |
 | `/update-codemaps` | Update code maps |
 | `/update-docs` | Update documentation |
+| `/update-readme` | Generate/update project README |
 | `/no-stubs` | Enforce no placeholder content |
 | `/real-testing` | Real infrastructure testing (NO MOCKING) |
 | `/deploy` | Docker/Kubernetes deployment |
@@ -133,6 +135,9 @@ For each component:
 5. **Comprehensive Documentation** - Document as you go, not at the end
 6. **Subagent Specialization** - Use the right agent for each task type
 7. **Design System Foundation** - Create design system BEFORE features
+8. **Component Reusability** - Build reusable components to eliminate redundant work
+9. **Responsive-First Design** - Build responsive patterns from the start
+10. **Dark Mode Built-In** - Support dark mode in all components from day 1
 
 ### Lessons Learned
 1. **Documentation Early** - Write guides during/after implementation
@@ -140,6 +145,9 @@ For each component:
 3. **Incremental Validation** - Verify tests pass immediately
 4. **Deprecation Fixes** - Address all deprecations immediately
 5. **Responsive Testing** - Test at all breakpoints for every feature
+6. **Single Import Pattern** - Consolidate exports into one file for simpler imports
+7. **Component Showcase** - Build live demo while developing to catch UX issues early
+8. **Real Device Testing** - Test on actual devices, not just simulators
 
 ---
 
@@ -216,8 +224,9 @@ See `.claude/mcp-configs/` for setup instructions.
 
 All commands are in `.claude/commands/`:
 
-| Skill | Category | Description |
-|-------|----------|-------------|
+| Command | Category | Description |
+|---------|----------|-------------|
+| `/init` | Operations | Initialize project or update SDK |
 | `/tdd` | Core | Test-driven development |
 | `/plan` | Core | Implementation planning |
 | `/code-review` | Core | Quality review |
@@ -233,6 +242,7 @@ All commands are in `.claude/commands/`:
 | `/setup-pm` | Operations | Package manager setup |
 | `/update-docs` | Documentation | Documentation sync |
 | `/update-codemaps` | Documentation | Code map updates |
+| `/update-readme` | Documentation | Generate project README |
 | `/learn` | Documentation | Pattern extraction (auto-detect) |
 | `/eval` | Advanced | Evaluation harness |
 | `/orchestrate` | Advanced | Multi-agent coordination |

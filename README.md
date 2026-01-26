@@ -5,7 +5,7 @@ A Claude Code development environment using **everything-claude-code (ECC)** for
 ## Features
 
 - **13 Enhanced Agents** - Specialized agents for different task types
-- **20 Slash Commands** - Quick access to development workflows
+- **21 Slash Commands** - Quick access to development workflows
 - **6-Phase Development Workflow** - Structured approach from planning to deployment
 
 ## Quick Start
@@ -25,13 +25,13 @@ On first session, Claude prompts for project settings (scope, product type, obje
 instructions.md (context) + /plan (command) → context-aware planning
 ```
 
-## Slash Commands (20 total)
+## Slash Commands (21 total)
 
 | Category | Commands |
 |----------|----------|
 | **Core** | `/tdd`, `/plan`, `/code-review`, `/e2e`, `/build-fix`, `/refactor-clean` |
 | **Quality** | `/verify`, `/checkpoint`, `/test-coverage`, `/no-stubs`, `/real-testing` |
-| **Operations** | `/deploy`, `/setup-pm` |
+| **Operations** | `/init`, `/deploy`, `/setup-pm` |
 | **Documentation** | `/update-docs`, `/update-codemaps`, `/update-readme`, `/learn` |
 | **Advanced** | `/eval`, `/orchestrate`, `/create-command` |
 
@@ -50,7 +50,8 @@ instructions.md (context) + /plan (command) → context-aware planning
 ┌─────────────────────────────────────────────────────────────┐
 │  PHASE 1: SETUP & PLANNING                                  │
 ├─────────────────────────────────────────────────────────────┤
-│  /setup-pm        → Configure package manager (npm/pip)     │
+│  /init            → Initialize new project OR update SDK    │
+│  /setup-pm        → Configure/change package manager        │
 │  /plan            → Design implementation approach          │
 │  /update-codemaps → Document initial structure              │
 └─────────────────────────────────────────────────────────────┘
@@ -101,7 +102,8 @@ instructions.md (context) + /plan (command) → context-aware planning
 
 | When | Use |
 |------|-----|
-| Starting a project | `/setup-pm` → `/plan` |
+| Starting a new project | `/init` (full setup) |
+| Updating SDK in existing project | `/init --update` (refreshes SDK files) |
 | Adding a feature | `/plan` → `/tdd` → `/no-stubs` → `/checkpoint` |
 | Complex cross-cutting work | `/orchestrate` (coordinates multiple phases) |
 | Build broken | `/build-fix` |
@@ -125,7 +127,7 @@ For quick tasks:
 ```
 jetflux-sdk/
 ├── .claude/
-│   ├── commands/         # 20 slash commands (/tdd, /plan, etc.)
+│   ├── commands/         # 21 slash commands (/init, /tdd, /plan, etc.)
 │   ├── agents/           # 13 enhanced agents
 │   └── mcp-configs/      # MCP server configurations
 ├── CLAUDE.md             # Master directives
@@ -155,11 +157,88 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 | gold-standards-validator | Code compliance enforcement |
 | documentation-validator | Documentation accuracy checking |
 
+## Command Reference
+
+<details>
+<summary>Click to expand full command reference with flags</summary>
+
+### Operations
+
+| Command | Arguments/Flags | Description |
+|---------|-----------------|-------------|
+| `/init` | `[path]` | Target directory (optional) |
+| | `--update` | Force update mode (refresh SDK files) |
+| | `--no-git` | Skip git initialization |
+| | `--no-framework` | Skip framework scaffolding |
+| | `--no-backup` | Skip backup prompt during updates |
+| `/setup-pm` | `--detect` | Show current package manager |
+| | `--global <pm>` | Set global preference |
+| | `--project <pm>` | Set project preference |
+| | `--list` | List available package managers |
+| `/deploy` | *(auto-detects)* | Detects project type automatically |
+
+### Core Development
+
+| Command | Arguments/Flags | Description |
+|---------|-----------------|-------------|
+| `/tdd` | *(interactive)* | TDD workflow with RED-GREEN-REFACTOR |
+| `/plan` | *(interactive)* | Generates plan, waits for confirmation |
+| `/build-fix` | *(auto)* | Incrementally fixes build errors |
+| `/refactor-clean` | *(auto)* | Dead code analysis and removal |
+| `/code-review` | *(none)* | Review local uncommitted changes |
+| | `[PR-URL]` | Review a GitHub pull request |
+| | `fix <issue-url>` | Analyze and fix a GitHub issue |
+| `/e2e` | *(interactive)* | Generate Playwright E2E tests |
+
+### Quality
+
+| Command | Arguments/Flags | Description |
+|---------|-----------------|-------------|
+| `/verify` | *(none)* | Full verification suite |
+| | `quick` | Quick verification only |
+| `/checkpoint` | `create <name>` | Create named checkpoint |
+| | `verify <name>` | Compare against checkpoint |
+| | `list` | Show all checkpoints |
+| | `clear` | Remove old checkpoints (keeps 5) |
+| `/test-coverage` | *(auto)* | Analyze and generate missing tests |
+| `/no-stubs` | *(auto)* | Scan for placeholder content |
+| `/real-testing` | *(auto)* | Verify NO MOCKING policy compliance |
+
+### Advanced
+
+| Command | Arguments/Flags | Description |
+|---------|-----------------|-------------|
+| `/eval` | `define <name>` | Create eval definition |
+| | `check <name>` | Run evals for feature |
+| | `report <name>` | Generate full eval report |
+| | `list` | Show all eval definitions |
+| | `clean` | Remove old logs (keeps 10) |
+| `/orchestrate` | `feature <desc>` | Full feature workflow |
+| | `bugfix <desc>` | Bug fix workflow |
+| | `refactor <desc>` | Refactoring workflow |
+| | `security <desc>` | Security review workflow |
+| | `custom <agents> <desc>` | Custom agent sequence |
+| `/create-command` | `[name]` | Interactive command wizard |
+
+### Documentation
+
+| Command | Arguments/Flags | Description |
+|---------|-----------------|-------------|
+| `/update-docs` | *(auto)* | Sync from source-of-truth |
+| `/update-codemaps` | *(auto)* | Update architecture documentation |
+| `/update-readme` | *(none)* | Full README generation |
+| | `preview` | Show without writing |
+| | `section <name>` | Update specific section only |
+| | `force` | Write without confirmation |
+| `/learn` | *(auto-detect)* | Extract patterns from session |
+
+</details>
+
 ## Documentation
 
 - [CLAUDE.md](CLAUDE.md) - Master directives and all commands
 - [instructions.md](instructions.md) - Project setup template
-- [.claude/commands/](.claude/commands/) - All 20 slash command files
+- [.claude/commands/](.claude/commands/) - All 21 slash command files
 
 ## License
 
