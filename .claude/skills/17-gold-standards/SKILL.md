@@ -19,6 +19,7 @@ Gold standards are **mandatory** practices for:
 - Security requirements
 - Documentation standards
 - Test creation guidelines
+- **No stubs or placeholders (complete implementations only)**
 
 **IMPORTANT**: These are not suggestions - they are **required standards** that prevent bugs, ensure consistency, and maintain code quality.
 
@@ -110,6 +111,17 @@ Gold standards are **mandatory** practices for:
   - **Rule**: Keep docs updated with code
   - **Rule**: Use docstrings for all functions/classes
   - **Rule**: Explain WHY, not just WHAT
+
+### Completeness Standards
+
+#### No Stubs or Placeholders (MANDATORY)
+- **[gold-no-stubs](gold-no-stubs.md)** - Complete implementation requirement
+  - **Rule**: NEVER leave placeholder text (lorem ipsum, "Coming soon", "TBD")
+  - **Rule**: NEVER leave stub functions (`pass`, empty bodies, `// TODO`)
+  - **Rule**: NEVER leave non-functional UI elements (dead buttons, empty pages)
+  - **Rule**: NEVER leave placeholder images or hardcoded sample data
+  - **Reason**: Incomplete deliverables are unprofessional and confusing
+  - **Pattern**: If not ready, omit entirely. Implement fully or don't include.
 
 ## Critical Gold Standards
 
@@ -211,6 +223,34 @@ except:  # Too broad, swallows errors
     pass  # Silent failure!
 ```
 
+### 9. No Stubs or Placeholders EVER
+```python
+# ✅ CORRECT (Gold Standard)
+def process_data(data):
+    """Fully implemented function."""
+    validated = validate_input(data)
+    transformed = apply_transformation(validated)
+    return {"result": transformed, "status": "complete"}
+
+# ❌ WRONG (Violates Gold Standard)
+def process_data(data):
+    pass  # TODO: implement later
+
+def another_function():
+    raise NotImplementedError("Coming soon")
+```
+
+```html
+<!-- ✅ CORRECT (Gold Standard) -->
+<h1>Welcome to Our Platform</h1>
+<p>Real content that describes the actual product.</p>
+
+<!-- ❌ WRONG (Violates Gold Standard) -->
+<h1>Lorem Ipsum</h1>
+<p>Coming soon... Under construction... TBD</p>
+<button disabled>Feature Coming Soon</button>
+```
+
 ## Compliance Checklist
 
 ### Before Every Commit
@@ -222,6 +262,7 @@ except:  # Too broad, swallows errors
 - [ ] Tests written (TDD)
 - [ ] No mocking in Tier 2-3 tests
 - [ ] Documentation updated
+- [ ] No stubs, placeholders, or incomplete implementations
 
 ### Before Every PR
 - [ ] Gold standards validator passed
@@ -274,6 +315,8 @@ python -m kailash.validation.gold_standards check-security
 **TDD**: Prevent bugs before they exist
 
 **Security Standards**: Prevent credential leaks, injection attacks
+
+**No Stubs**: Prevent unprofessional, confusing, or broken user experiences
 
 ## When to Use This Skill
 

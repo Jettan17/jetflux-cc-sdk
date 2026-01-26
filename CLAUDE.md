@@ -20,7 +20,7 @@ This project combines the **everything-claude-code** plugin with enhanced agents
    - External Tool Integration (optional)
    - Existing Product Reference (optional)
 4. **Update `instructions.md`** with their responses
-5. **Always reference Project Settings** when running commands or making decisions
+5. **Always reference Project Settings and Must Do** when running commands or making decisions
 
 **If Project Settings ARE filled**, acknowledge them and proceed with the user's request.
 
@@ -159,6 +159,31 @@ For each component:
 - Avoid over-engineering - only make directly requested changes
 - Don't add features, refactor code, or make "improvements" beyond what was asked
 - Remove unused code completely - no backward-compatibility hacks
+
+### No Stubs or Placeholders (CRITICAL)
+**NEVER leave incomplete or placeholder content in any deliverable:**
+
+#### Forbidden in UI/Frontend:
+- ❌ Lorem ipsum or any placeholder text
+- ❌ "Coming soon", "Under construction", "TBD", "TODO" visible to users
+- ❌ Empty pages, blank sections, or stub components
+- ❌ Placeholder images (gray boxes, "image here" text)
+- ❌ Non-functional buttons, links, or form elements
+- ❌ Hardcoded sample data that should be dynamic
+
+#### Forbidden in Code:
+- ❌ `pass` statements in Python without implementation
+- ❌ `// TODO: implement` comments left in production code
+- ❌ Empty function bodies or stub methods
+- ❌ `throw new Error("Not implemented")` patterns
+- ❌ Commented-out code blocks meant for "later"
+
+#### The Rule:
+**If a feature isn't ready, don't include it at all.** Either:
+1. Implement it fully, OR
+2. Don't add it to the codebase
+
+This applies to all scopes (Small/Medium/Large) and all project types.
 
 ### Testing
 - Write tests before implementation (TDD)

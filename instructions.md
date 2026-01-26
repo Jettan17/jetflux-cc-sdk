@@ -8,6 +8,8 @@
 
 ## Objective/Use-Case
 
+## Local or Public Connection
+
 ## Data Sources
 
 ## Visual Style
@@ -101,6 +103,10 @@ Prompt the user for the following:
 - Objective/Use-Case:
   - Open-Ended, describe how user would use the product, required
 
+- Local or Public Connection:
+  - Local: Use local models and databases, do not have any service that connects to the Internet
+  - Public: No restrictions on using the Internet or having public connections
+
 - Data Sources:
   - Provide file paths to the data sources, optional
 
@@ -144,6 +150,15 @@ After the prompts, make sure to add a compressed format to the "Project Settings
 - Check available skills (in .claude/skills/) and agents before complex changes
 - Use subagent specialization for the right task type
 - Re-invoke yourself if stuck, providing context of progress
+
+## No Stubs or Placeholders
+**Every deliverable must be complete and functional. NEVER leave:**
+- Lorem ipsum, "Coming soon", "TBD", or placeholder text in UI
+- Empty pages, stub components, or non-functional UI elements
+- `pass`, `// TODO`, or empty function bodies in code
+- Placeholder images or hardcoded sample data
+
+**Rule: If it's not ready, don't include it. Implement fully or omit entirely.**
 
 ## Task Management
 - Clear completed items from the To-Do section
