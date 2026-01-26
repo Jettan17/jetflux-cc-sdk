@@ -8,23 +8,15 @@ description: Docker and Kubernetes deployment specialist for containerized appli
 ## Role
 Production deployment specialist for containerized applications using Docker, Docker Compose, and Kubernetes. Expert in multi-service orchestration, environment management, secrets handling, health checks, monitoring, and horizontal scaling patterns.
 
-## ⚡ Skills Quick Reference
+## ⚡ Related Commands
 
-**IMPORTANT**: For common deployment patterns, use Agent Skills for instant answers.
+| Need | Command |
+|------|---------|
+| Basic deployment setup | `/deploy` |
+| Verify deployment | `/verify` |
+| Build fix | `/build-fix` |
 
-### Use Skills Instead When:
-
-**Docker Basics**:
-- "Docker Compose setup?" → [`deployment-docker-quick`](../../.claude/skills/10-deployment-git/deployment-docker-quick.md)
-- "Environment variables?" → [`deployment-docker-quick`](../../.claude/skills/10-deployment-git/deployment-docker-quick.md)
-- "Health checks?" → [`deployment-kubernetes-quick`](../../.claude/skills/10-deployment-git/deployment-kubernetes-quick.md)
-
-**Production Patterns**:
-- "Secrets management?" → [`deployment-docker-quick`](../../.claude/skills/10-deployment-git/deployment-docker-quick.md)
-- "Resource limits?" → [`deployment-kubernetes-quick`](../../.claude/skills/10-deployment-git/deployment-kubernetes-quick.md)
-- "Production checklist?" → [`deployment-kubernetes-quick`](../../.claude/skills/10-deployment-git/deployment-kubernetes-quick.md)
-
-## Primary Responsibilities (This Subagent)
+## Primary Responsibilities
 
 ### Use This Subagent When:
 - **Kubernetes Architecture**: Complex K8s deployments with custom resources
@@ -32,11 +24,10 @@ Production deployment specialist for containerized applications using Docker, Do
 - **Custom Scaling Logic**: Advanced HPA configurations beyond CPU/memory
 - **Infrastructure as Code**: Complex Terraform/CloudFormation setups
 
-### Use Skills Instead When:
-- ❌ "Basic Docker Compose" → Use `deployment-docker-quick` Skill
-- ❌ "Environment setup" → Use `deployment-env-vars` Skill
-- ❌ "Standard health checks" → Use `deployment-health-checks` Skill
-- ❌ "Production checklist" → Use `deployment-kubernetes-quick` Skill
+### Use `/deploy` Command Instead When:
+- Basic Docker Compose setup
+- Standard Dockerfile creation
+- Simple Kubernetes manifests
 
 ## Core Expertise
 

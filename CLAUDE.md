@@ -1,6 +1,6 @@
 # Claude Code SDK - Master Directives
 
-This project combines the **everything-claude-code** plugin with enhanced agents and skills from the Kailash development system.
+This project uses the **everything-claude-code (ECC)** plugin for structured development workflows.
 
 ---
 
@@ -10,17 +10,12 @@ This project combines the **everything-claude-code** plugin with enhanced agents
 
 1. **Read `instructions.md`** to load project context
 2. **Check if Project Settings are empty** (Scope, Final Product, Objective are blank)
-3. **If empty, IMMEDIATELY prompt the user** for project settings before doing anything else:
-   - Scope (Small/Medium/Large)
-   - Final Product (Web/Mobile/Desktop/Open-Ended)
-   - Commercial or Personal Use
-   - Objective/Use-Case (required)
-   - Data Sources (optional)
-   - Visual Style (optional)
-   - External Tool Integration (optional)
-   - Existing Product Reference (optional)
+3. **If empty, gather settings using AskUserQuestion tool:**
+   - Use 2-4 options per question (Claude Code adds "Other" automatically)
+   - Do NOT add custom "Other" options - duplicates will appear
+   - Ask free-text questions (Objective, Data Sources) separately as regular questions
 4. **Update `instructions.md`** with their responses
-5. **Always reference Project Settings and Must Do** when running commands or making decisions
+5. **Always reference Project Settings** when running commands
 
 **If Project Settings ARE filled**, acknowledge them and proceed with the user's request.
 
@@ -29,7 +24,7 @@ This project combines the **everything-claude-code** plugin with enhanced agents
 ### Plugin Status: INSTALLED ✓
 The everything-claude-code plugin is installed at `~/.claude/plugins/everything-claude-code/`
 
-### Available Slash Commands (15 total)
+### Available Slash Commands (18 total)
 | Command | Description |
 |---------|-------------|
 | `/tdd` | Test-driven development workflow |
@@ -47,12 +42,15 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 | `/test-coverage` | Test coverage analysis |
 | `/update-codemaps` | Update code maps |
 | `/update-docs` | Update documentation |
+| `/no-stubs` | Enforce no placeholder content |
+| `/real-testing` | Real infrastructure testing (NO MOCKING) |
+| `/deploy` | Docker/Kubernetes deployment |
 
 ---
 
 ## Specialized Subagents
 
-### From everything-claude-code (Base)
+### Core Agents
 | Agent | Purpose |
 |-------|---------|
 | **Planner** | Feature implementation planning |
@@ -65,69 +63,58 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 | **Refactor Cleaner** | Dead code elimination |
 | **Doc Updater** | Documentation synchronization |
 
-### Enhanced Agents (From Kailash)
+### Enhanced Agents
 | Agent | Purpose | When to Use |
 |-------|---------|-------------|
-| **ultrathink-analyst** | Deep failure analysis, complexity assessment | Complex features, systemic issues, risk analysis |
-| **requirements-analyst** | Requirements breakdown, ADR creation | Systematic analysis, architecture decisions |
-| **framework-advisor** | Technology selection guidance | Choosing frameworks, tech stack decisions |
-| **intermediate-reviewer** | Checkpoint reviews, progress validation | Reviewing todos and implementation milestones |
-| **gold-standards-validator** | Compliance checking | Code validation, catching violations early |
-| **documentation-validator** | Documentation testing | Testing code examples, ensuring doc accuracy |
-| **todo-manager** | Task management and tracking | Creating and managing development task lists |
-| **gh-manager** | GitHub Projects integration | Syncing requirements with GitHub, managing sprints |
-| **deployment-specialist** | Docker/Kubernetes deployment | Production deployments, environment management |
-| **react-specialist** | React 19/Next.js 15 patterns | Frontend implementation, React Flow editors |
-| **flutter-specialist** | Flutter mobile patterns | Cross-platform mobile/desktop apps |
+| **ultrathink-analyst** | Deep failure analysis | Complex features, systemic issues |
+| **requirements-analyst** | Requirements breakdown, ADR creation | Architecture decisions |
+| **framework-advisor** | Technology selection guidance | Tech stack decisions |
+| **intermediate-reviewer** | Checkpoint reviews | Progress validation |
+| **todo-manager** | Task management | Development task lists |
+| **gh-manager** | GitHub Projects integration | Sprint management |
+| **deployment-specialist** | Docker/Kubernetes deployment | Production deployments |
+| **react-specialist** | React 19/Next.js 15 patterns | Frontend implementation |
+| **flutter-specialist** | Flutter mobile patterns | Mobile/desktop apps |
 
 ---
 
 ## Development Workflow Phases
 
-### Phase 1: Analysis
+### Phase 1: Analysis & Planning
 ```
-1. > Use the ultrathink-analyst subagent to analyze requirements for [feature]
-2. > Use the requirements-analyst subagent to create breakdown and ADR
-3. > Use the framework-advisor subagent to recommend technology choices
-```
-
-### Phase 2: Planning
-```
-1. > Use the todo-manager subagent to create task breakdown
-2. > Use the gh-manager subagent to sync with GitHub Projects
-3. > Use the intermediate-reviewer subagent to validate plan
+1. Run /plan to design implementation approach
+2. > Use ultrathink-analyst for complex requirements
+3. > Use todo-manager to create task breakdown
 ```
 
-### Phase 3: Implementation
+### Phase 2: Implementation (TDD)
 ```
 For each component:
-1. Use /tdd to write tests first
-2. > Use pattern-expert or framework-specific specialist for implementation
-3. > Use the gold-standards-validator subagent for compliance
-4. > Use the intermediate-reviewer subagent for progress review
+1. Run /tdd to write tests first
+2. Implement to pass tests
+3. Run /no-stubs to verify completeness
+4. > Use intermediate-reviewer for progress review
 ```
 
-### Phase 4: Testing
+### Phase 3: Testing & Quality
 ```
-1. > Use the testing-specialist subagent for 3-tier test coverage
-2. > Use the documentation-validator subagent to test code examples
-```
-
-### Phase 5: Deployment
-```
-1. > Use the deployment-specialist subagent for Docker/Kubernetes setup
+1. Run /e2e for end-to-end tests
+2. Run /real-testing to verify integration tests use real services
+3. Run /test-coverage to check coverage
+4. Run /verify for full validation
 ```
 
-### Phase 6: Release
+### Phase 4: Deployment
+```
+1. Run /deploy for Docker/Kubernetes setup
+2. > Use deployment-specialist for production configuration
+```
+
+### Phase 5: Release
 ```
 1. Run /code-review for final quality check
-2. Use pre-commit validation
+2. Run /update-docs to sync documentation
 3. Create PR with proper documentation
-```
-
-### Phase 7: Final Review
-```
-1. > Use the intermediate-reviewer subagent for final critique
 ```
 
 ---
@@ -221,19 +208,30 @@ See `.claude/mcp-configs/` for setup instructions.
 
 ---
 
-## Skills Library
+## Slash Commands
 
-### Available Categories
-| Category | Description |
-|----------|-------------|
-| 06-cheatsheets | Quick reference patterns |
-| 07-development-guides | Development practices |
-| 09-workflow-patterns | Reusable workflow designs |
-| 10-deployment-git | Docker + Git workflows |
-| 11-frontend-integration | React/Vue patterns |
-| 12-testing-strategies | Testing methodologies |
-| 15-error-troubleshooting | Common errors & solutions |
-| 17-gold-standards | Compliance standards |
+All commands are in `.claude/commands/`:
+
+| Skill | Category | Description |
+|-------|----------|-------------|
+| `/tdd` | Core | Test-driven development |
+| `/plan` | Core | Implementation planning |
+| `/code-review` | Core | Quality review |
+| `/e2e` | Core | E2E test generation |
+| `/build-fix` | Core | Build error resolution |
+| `/refactor-clean` | Core | Dead code removal |
+| `/checkpoint` | Quality | Save verification state |
+| `/verify` | Quality | Verification loop |
+| `/test-coverage` | Quality | Coverage analysis |
+| `/no-stubs` | Quality | No placeholder content |
+| `/real-testing` | Quality | Real infrastructure testing |
+| `/deploy` | Operations | Docker/K8s deployment |
+| `/setup-pm` | Operations | Package manager setup |
+| `/update-docs` | Documentation | Documentation sync |
+| `/update-codemaps` | Documentation | Code map updates |
+| `/learn` | Documentation | Pattern extraction |
+| `/eval` | Advanced | Evaluation harness |
+| `/orchestrate` | Advanced | Multi-agent coordination |
 
 ---
 
@@ -260,11 +258,17 @@ When starting a new project, configure these in `instructions.md`:
 /code-review      # Review code quality
 /orchestrate      # Multi-agent orchestration
 
-# Testing
+# Testing & Quality
 /e2e              # Generate E2E tests
 /verify           # Run verification loop
 /test-coverage    # Analyze test coverage
+/no-stubs         # Enforce no placeholder content
+/real-testing     # Real infrastructure testing
 /eval             # Run evaluation harness
+
+# Deployment & Operations
+/deploy           # Docker/Kubernetes deployment
+/setup-pm         # Configure package manager
 
 # Maintenance
 /build-fix        # Fix build errors
@@ -275,7 +279,6 @@ When starting a new project, configure these in `instructions.md`:
 # Learning & State
 /learn            # Extract patterns from session
 /checkpoint       # Save verification state
-/setup-pm         # Configure package manager
 ```
 
 ---
@@ -285,5 +288,5 @@ When starting a new project, configure these in `instructions.md`:
 ### Must Do Before Starting
 1. Set up isolated environments (venv for Python, node for Node.js)
 2. Enable turbo-all and SafeToAutoRun for common commands
-3. Check available skills/agents before implementing complex changes
+3. Check available commands/agents before implementing complex changes
 4. Document all work in markdown files as you progress

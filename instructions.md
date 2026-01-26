@@ -64,67 +64,85 @@ Use with: `> Use the [agent-name] subagent to [task]`
 
 # Creating a New Project
 
-Prompt the user for the following:
+Use AskUserQuestion tool to gather project settings. Do NOT add custom "Other" options - Claude Code adds that automatically.
 
-- Scope:
-  - Small: 
-    1. Perform most tasks in a parsimonious manner
-    2. Seek online sources as much as possible since it is likely that the problem has been solved before
-  - Medium:
-    1. Present your idea and plan before proceeding, but your plan does not need to be very detailed as compared to large scope, for example not needing very detailed architecture
-  - Large:
-    1. Ultrathink and deep dive into the problem space and when solving anything
-    2. Please present me with the plan before proceeding, especially including the architectural decisions and trade-offs
+## Questions to Ask (use AskUserQuestion)
 
-- Final Product:
-  - Web application
-  - Mobile application
-  - Desktop application
-  - Open-Ended
+### Question 1: Scope
+Options (2-4 max, no "Other"):
+- **Small**: Quick tasks, use existing solutions, minimal planning
+- **Medium**: Present plan before proceeding, moderate detail
+- **Large**: Deep analysis, detailed architecture, comprehensive planning
 
-- Commercial or Personal Use:
-  - Commercial: 
-    1. Research thoroughly and distill the value propositions and UNIQUE SELLING POINTS of our solution
-    2. Scrutinize and critique my scenarios, with the focus of improving the solution
-    3. Evaluate it using the AAA framework
-      - Automate: Reduce operational costs
-      - Augment: Reduce decision-making costs
-      - Amplify: Reduce expertise costs (for scaling)
-    4. Features must sufficiently cover the following network behaviors to achieve strong network effects
-      - Accessibility: Easy for users to complete a transaction
-      - Engagement: Information that are useful to users for completing a transaction
-      - Personalization: Information that are curated for an intended use
-      - Connection: Information sources that are connected to the platform (one or two-way)
-      - Collaboration: Producers and consumers can jointly work together seamlessly
-  - Personal:
-    1. Place less importance on deploying and priortise being able to just run locally, but leave the option to deploy in the future
-    2. Fork and use open source code or copy from other sources as much as possible, since it will be non-commercial
+### Question 2: Final Product
+Options:
+- **Web**: Browser-based application
+- **Mobile**: iOS/Android app
+- **Desktop**: Native desktop application
 
-- Objective/Use-Case:
-  - Open-Ended, describe how user would use the product, required
+### Question 3: Usage Type
+Options:
+- **Commercial**: Production-ready, scalable, with deployment
+- **Personal**: Local-first, can use open source freely
 
-- Local or Public Connection:
-  - Local: Use local models and databases, do not have any service that connects to the Internet
-  - Public: No restrictions on using the Internet or having public connections
+### Question 4: Connection Type
+Options:
+- **Local**: Offline, local models and databases only
+- **Public**: Can use internet services and APIs
 
-- Data Sources:
-  - Provide file paths to the data sources, optional
+### Question 5: Visual Style (if applicable)
+Options (pick 3-4, Claude Code adds "Other"):
+- **High-Key**: Bold, vibrant (landonorris.com, animejs.com)
+- **Modern**: Clean, contemporary (bryanminear.com)
+- **Minimalist**: Simple, focused (kickpush.co, dau.lt)
+- **Product**: Professional SaaS (slack.com)
+- **Artsy**: Creative, expressive (justinjackson.ca)
 
-- Visual Style:
-  - High-Key: landonorris.com
-  - Modern: https://bryanminear.com/
-  - Minimalist: https://kickpush.co/ or https://dau.lt/
-  - Product: https://slack.com/
-  - Artsy: https://justinjackson.ca/
-  - Open-Ended
+### Free-text Questions (ask separately, not with AskUserQuestion)
+After the above, ask these as regular questions:
+- **Objective**: "What is the main use-case? Describe how users will use the product."
+- **Data Sources**: "Any specific data sources? (optional)"
+- **Integrations**: "Any external tools or APIs to integrate? (optional)"
+- **Reference**: "Any existing products to reference? (optional)"
 
-- External Tool Integration:
-  - Open-Ended, optional, try to find possible MCP servers that can help you solve the problem
+## After Gathering Settings
+Update the "Project Settings" section at the top of this file with the answers.
 
-- Existing Product Reference:
-  - Open-Ended, optional, helpful to use as reference
+## Behavior by Scope
 
-After the prompts, make sure to add a compressed format to the "Project Settings" section to remember the project settings
+**Small Scope:**
+- Parsimonious approach
+- Seek existing solutions first
+- Minimal documentation
+
+**Medium Scope:**
+- Present plan before implementation
+- Moderate detail in architecture
+
+**Large Scope:**
+- Deep analysis (use ultrathink-analyst)
+- Detailed architecture decisions
+- Comprehensive documentation
+
+**Commercial Use:**
+- Research value propositions and UNIQUE SELLING POINTS
+- Scrutinize and critique scenarios to improve the solution
+- Evaluate with AAA framework:
+  - Automate: Reduce operational costs
+  - Augment: Reduce decision-making costs
+  - Amplify: Reduce expertise costs (for scaling)
+- Features should cover network behaviors:
+  - Accessibility: Easy for users to complete transactions
+  - Engagement: Useful information for transactions
+  - Personalization: Curated information for intended use
+  - Connection: Information sources connected to platform
+  - Collaboration: Producers and consumers can work together
+- Production deployment priority
+
+**Personal Use:**
+- Local-first, deploy later
+- Can use open source freely
+- Fork and copy from other sources (non-commercial)
 
 <br><br><br>
 
@@ -143,11 +161,12 @@ After the prompts, make sure to add a compressed format to the "Project Settings
 - Document all work in markdown files AS YOU WORK (not at the end)
 - Use numbered format: `01-...`, `02-...`, etc.
 - This is critical for agent handoff
+- For checkpoints, please create a new checkpoints directory in docs/checkpoints where the new checkpoints will be saved, and prompt me for a checkpoint name, and save the filename as `YYYY-MM-DD-description.md`
 
 ## Development Practices
 - Refer to "Project Settings" and "Creating a New Project" for project scope and objectives, and other configurations to take note of
 - Search for state-of-the-art solutions before implementing
-- Check available skills (in .claude/skills/) and agents before complex changes
+- Check available skills (in .claude/commands/) and agents before complex changes
 - Use subagent specialization for the right task type
 - Re-invoke yourself if stuck, providing context of progress
 

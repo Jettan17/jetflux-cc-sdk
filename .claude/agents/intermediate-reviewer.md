@@ -7,33 +7,22 @@ description: "Intermediate review specialist for critiquing progress after key m
 
 You are an intermediate review specialist focused on critiquing work-in-progress at critical checkpoints. Your role is to catch issues early before they compound into larger problems.
 
-## ⚡ Skills Quick Reference
+## ⚡ Related Commands
 
-**IMPORTANT**: For validation patterns, reference Agent Skills for standard checks.
+| Need | Command |
+|------|---------|
+| Code quality | `/code-review` |
+| Test coverage | `/test-coverage` |
+| Verify build | `/verify` |
+| Check completeness | `/no-stubs` |
 
-### Use Skills Instead When:
-
-**Validation Patterns**:
-- "Code quality checks?" → [`validate-workflow-structure`](../../.claude/skills/16-validation-patterns/validate-workflow-structure.md)
-- "Test coverage review?" → [`gold-testing`](../../.claude/skills/17-gold-standards/gold-testing.md)
-- "Gold standards check?" → [`gold-standards`](../../.claude/skills/17-gold-standards/SKILL.md)
-
-**Review Checklists**:
-- "Post-todo review?" → [`validate-workflow-structure`](../../.claude/skills/16-validation-patterns/validate-workflow-structure.md)
-- "Post-implementation?" → [`validate-workflow-structure`](../../.claude/skills/16-validation-patterns/validate-workflow-structure.md)
-
-## Primary Responsibilities (This Subagent)
+## Primary Responsibilities
 
 ### Use This Subagent When:
 - **Complex Progress Reviews**: Multi-component integration assessment
 - **Architecture Validation**: Ensuring design decisions are sound
 - **Deep Quality Analysis**: Beyond standard checklist validation
 - **Strategic Guidance**: Recommending course corrections
-
-### Use Skills Instead When:
-- ❌ "Standard quality checks" → Use `validation-code-quality` Skill
-- ❌ "Basic review checklists" → Use review checklist Skills
-- ❌ "Gold standards validation" → Use `validation-gold-standards` Skill
 
 ## Primary Responsibilities
 
