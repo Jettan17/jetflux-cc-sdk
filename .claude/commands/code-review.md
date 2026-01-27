@@ -149,7 +149,7 @@ When run with fix keyword: `/code-review fix #42`
    - Identify affected files from context
    - Determine scope (bug fix, feature, refactor)
 
-3. **Plan Fix** (Internal /plan invocation)
+3. **Plan Fix** (Internal /design invocation)
    - Design implementation approach
    - Identify test requirements
    - Estimate change scope

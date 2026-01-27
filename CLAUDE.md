@@ -27,9 +27,9 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 ### Available Slash Commands (14 total)
 | Command | Description |
 |---------|-------------|
-| `/init` | Initialize new project or update SDK files |
+| `/sdk` | Initialize new project or update SDK files |
 | `/tdd` | Test-driven development (unit, integration, E2E, coverage) |
-| `/plan` | Implementation planning |
+| `/design` | Implementation planning |
 | `/code-review` | Quality review + dead code cleanup (local, PR, issue fix modes) |
 | `/build-fix` | Build error resolution |
 | `/verify` | Verification loop execution |
@@ -81,7 +81,7 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 
 ### Phase 1: Analysis & Planning
 ```
-1. Run /plan to design implementation approach
+1. Run /design to design implementation approach
 2. > Use ultrathink-analyst for complex requirements
 3. > Use todo-manager to create task breakdown
 ```
@@ -226,9 +226,9 @@ All commands are in `.claude/commands/`:
 
 | Command | Category | Description |
 |---------|----------|-------------|
-| `/init` | Operations | Initialize project or update SDK |
+| `/sdk` | Operations | Initialize project or update SDK |
 | `/tdd` | Core | Test-driven development (unit, integration, E2E, coverage) |
-| `/plan` | Core | Implementation planning |
+| `/design` | Core | Implementation planning |
 | `/code-review` | Core | Quality review + dead code cleanup |
 | `/build-fix` | Core | Build error resolution |
 | `/verify` | Quality | Verification loop |
@@ -265,7 +265,7 @@ When starting a new project, configure these in `instructions.md`:
 /tdd e2e          # E2E tests with Playwright
 /tdd coverage     # Analyze and fill coverage gaps
 /tdd --full       # All tests + coverage + no-stubs check
-/plan             # Plan implementation
+/design           # Plan implementation
 /code-review      # Review code quality
 /orchestrate      # Multi-agent orchestration
 

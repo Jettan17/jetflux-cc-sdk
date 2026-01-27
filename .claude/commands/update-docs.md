@@ -236,6 +236,6 @@ Identifies documentation not modified in 90+ days:
 
 ## Related Commands
 
-- `/plan` - Plan features (generates initial docs)
+- `/design` - Plan features (generates initial docs)
 - `/code-review` - Review changes (may need doc updates)
 - `/learn` - Extract patterns (updates learnings)

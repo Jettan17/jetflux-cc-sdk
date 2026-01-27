@@ -4,18 +4,18 @@ origin: "jetflux-original"
 created: "2026-01-26"
 ---
 
-# /init - Initialize or Update Project
+# /sdk - Initialize or Update Project
 
 Create a new project with JetFlux SDK, or update an existing project's SDK files.
 
 ## Usage
 
 ```bash
-/init                           # Interactive setup in current directory
-/init my-project                # Create new project in ./my-project
-/init ../projects/my-app        # Create at specific path
-/init --update                  # Update SDK files in current project
-/init my-project --update       # Update SDK files in existing project
+/sdk                           # Interactive setup in current directory
+/sdk my-project                # Create new project in ./my-project
+/sdk ../projects/my-app        # Create at specific path
+/sdk --update                  # Update SDK files in current project
+/sdk my-project --update       # Update SDK files in existing project
 ```
 
 ## Mode Detection
@@ -205,7 +205,7 @@ Next steps:
 3. npm run dev
 
 Available commands:
-- /plan     - Plan features
+- /design   - Plan features
 - /tdd      - Test-driven development
 - /verify   - Run checks
 ```
@@ -229,22 +229,22 @@ Available commands:
 
 ```bash
 # NEW PROJECT: Interactive setup in new folder
-/init my-portfolio
+/sdk my-portfolio
 
 # NEW PROJECT: Setup in current empty directory
-/init
+/sdk
 
 # NEW PROJECT: Skip framework init (just add SDK files)
-/init --no-framework
+/sdk --no-framework
 
 # UPDATE: Refresh SDK files in current project
-/init --update
+/sdk --update
 
 # UPDATE: Refresh SDK files in specific project
-/init ../my-project --update
+/sdk ../my-project --update
 
 # UPDATE: Quick update without backup prompt
-/init --update --no-backup
+/sdk --update --no-backup
 ```
 
 ## Notes

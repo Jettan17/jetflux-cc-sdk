@@ -203,5 +203,5 @@ Created: 2026-01-27
 ## Related Commands
 
 - `/tdd` - Standard code testing (use for non-AI features)
-- `/plan` - Plan AI feature implementation
+- `/design` - Plan AI feature implementation
 - `/code-review` - Review AI feature code quality

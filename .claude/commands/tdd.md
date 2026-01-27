@@ -282,7 +282,7 @@ npm test -- --coverage
 
 ## Related Commands
 
-- `/plan` - Plan what to build before TDD
+- `/design` - Plan what to build before TDD
 - `/verify` - Run full verification after TDD
 - `/code-review` - Review implementation quality
 - `/build-fix` - Fix build errors if they occur
