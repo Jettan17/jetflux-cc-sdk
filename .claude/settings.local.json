@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(do echo \"=== $dir ===\" grep -r \"/init\\\\|/plan\" \"/c/Users/Jethro/Documents/claude-code-projects/$dir/\" --include=\"*.md\")",
+      "Bash(done)"
+    ]
+  }
+}

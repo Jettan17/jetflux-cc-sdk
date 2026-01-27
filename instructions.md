@@ -39,11 +39,11 @@
 Should show `everything-claude-code` as installed.
 
 ## Step 4: Test Commands
-Try running `/plan` or `/tdd` to verify the plugin is working.
+Try running `/design` or `/tdd` to verify the plugin is working.
 
 ## Available Slash Commands (14 total)
 - `/tdd` - Test-driven development (unit, integration, E2E, coverage)
-- `/plan` - Implementation planning
+- `/design` - Implementation planning
 - `/code-review` - Quality review + dead code cleanup
 - `/build-fix` - Build error resolution
 - `/verify` - Verification loop execution
@@ -54,7 +54,7 @@ Try running `/plan` or `/tdd` to verify the plugin is working.
 - `/learn` - Pattern extraction mid-session
 - `/ai-eval` - AI feature evaluation harness
 - `/orchestrate` - Multi-agent orchestration
-- `/init` - Initialize or update SDK
+- `/sdk` - Initialize or update SDK
 - `/create-command` - Create custom commands
 
 ## Enhanced Agents (in .claude/agents/)
