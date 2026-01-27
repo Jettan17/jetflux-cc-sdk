@@ -118,7 +118,7 @@ Replace the Project Settings section with gathered values:
 
 ### Step 6: Generate README.md
 
-Run `/update-readme` logic to create project-specific README.
+Run `/update-docs --readme` logic to create project-specific README.
 
 #### Step 7: Initialize Git (Optional)
 
@@ -175,7 +175,7 @@ Display what was updated:
 SDK files updated successfully!
 
 Updated:
-- .claude/commands/ (21 files)
+- .claude/commands/ (15 files)
 - .claude/agents/ (13 files)
 - .claude/mcp-configs/ (5 files)
 - CLAUDE.md

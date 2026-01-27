@@ -41,17 +41,21 @@ Should show `everything-claude-code` as installed.
 ## Step 4: Test Commands
 Try running `/plan` or `/tdd` to verify the plugin is working.
 
-## Available Slash Commands
-- `/tdd` - Test-driven development workflow
+## Available Slash Commands (14 total)
+- `/tdd` - Test-driven development (unit, integration, E2E, coverage)
 - `/plan` - Implementation planning
-- `/e2e` - E2E test generation
-- `/code-review` - Quality review
+- `/code-review` - Quality review + dead code cleanup
 - `/build-fix` - Build error resolution
-- `/refactor-clean` - Dead code removal
-- `/learn` - Pattern extraction mid-session
-- `/checkpoint` - Save verification state
 - `/verify` - Verification loop execution
+- `/checkpoint` - Save verification state
+- `/deploy` - Deploy to Docker, K8s, Vercel, Railway
 - `/setup-pm` - Package manager configuration
+- `/update-docs` - Sync all documentation
+- `/learn` - Pattern extraction mid-session
+- `/ai-eval` - AI feature evaluation harness
+- `/orchestrate` - Multi-agent orchestration
+- `/init` - Initialize or update SDK
+- `/create-command` - Create custom commands
 
 ## Enhanced Agents (in .claude/agents/)
 Use with: `> Use the [agent-name] subagent to [task]`
