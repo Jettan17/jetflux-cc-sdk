@@ -22,16 +22,16 @@ On first session, Claude prompts for project settings (scope, product type, obje
 
 ### 3. Running Commands
 ```
-instructions.md (context) + /plan (command) → context-aware planning
+instructions.md (context) + /design (command) → context-aware planning
 ```
 
 ## Slash Commands (14 total)
 
 | Category | Commands |
 |----------|----------|
-| **Core** | `/tdd`, `/plan`, `/code-review`, `/build-fix` |
+| **Core** | `/tdd`, `/design`, `/code-review`, `/build-fix` |
 | **Quality** | `/verify`, `/checkpoint` |
-| **Operations** | `/init`, `/deploy`, `/setup-pm` |
+| **Operations** | `/sdk`, `/deploy`, `/setup-pm` |
 | **Documentation** | `/update-docs`, `/learn` |
 | **Advanced** | `/ai-eval`, `/orchestrate`, `/create-command` |
 
@@ -50,9 +50,9 @@ instructions.md (context) + /plan (command) → context-aware planning
 ┌─────────────────────────────────────────────────────────────┐
 │  PHASE 1: SETUP & PLANNING                                  │
 ├─────────────────────────────────────────────────────────────┤
-│  /init            → Initialize new project OR update SDK    │
+│  /sdk            → Initialize new project OR update SDK    │
 │  /setup-pm        → Configure/change package manager        │
-│  /plan            → Design implementation approach          │
+│  /design            → Design implementation approach          │
 │  /update-docs     → Document initial structure              │
 └─────────────────────────────────────────────────────────────┘
                             ↓
@@ -98,9 +98,9 @@ instructions.md (context) + /plan (command) → context-aware planning
 
 | When | Use |
 |------|-----|
-| Starting a new project | `/init` (full setup) |
-| Updating SDK in existing project | `/init --update` (refreshes SDK files) |
-| Adding a feature | `/plan` → `/tdd` → `/checkpoint` |
+| Starting a new project | `/sdk` (full setup) |
+| Updating SDK in existing project | `/sdk --update` (refreshes SDK files) |
+| Adding a feature | `/design` → `/tdd` → `/checkpoint` |
 | Complex cross-cutting work | `/orchestrate` (coordinates multiple phases) |
 | Build broken | `/build-fix` |
 | Before committing | `/code-review` → `/verify` |
@@ -113,7 +113,7 @@ instructions.md (context) + /plan (command) → context-aware planning
 
 For quick tasks:
 ```
-/plan → /tdd → /verify → /code-review
+/design → /tdd → /verify → /code-review
 ```
 
 ## Directory Structure
@@ -121,7 +121,7 @@ For quick tasks:
 ```
 jetflux-sdk/
 ├── .claude/
-│   ├── commands/         # 14 slash commands (/init, /tdd, /plan, etc.)
+│   ├── commands/         # 14 slash commands (/sdk, /tdd, /design, etc.)
 │   ├── agents/           # 13 enhanced agents
 │   └── mcp-configs/      # MCP server configurations
 ├── CLAUDE.md             # Master directives
@@ -160,7 +160,7 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 
 | Command | Arguments/Flags | Description |
 |---------|-----------------|-------------|
-| `/init` | `[path]` | Target directory (optional) |
+| `/sdk` | `[path]` | Target directory (optional) |
 | | `--update` | Force update mode (refresh SDK files) |
 | | `--no-git` | Skip git initialization |
 | | `--no-framework` | Skip framework scaffolding |
@@ -187,7 +187,7 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 | | `e2e` | E2E tests with Playwright |
 | | `coverage` | Analyze + generate missing tests |
 | | `--full` | All tests + coverage + no-stubs |
-| `/plan` | *(interactive)* | Generates plan, waits for confirmation |
+| `/design` | *(interactive)* | Generates plan, waits for confirmation |
 | `/build-fix` | *(auto)* | Incrementally fixes build errors |
 | `/code-review` | *(none)* | Review local changes + dead code cleanup |
 | | `--no-clean` | Skip dead code cleanup |
