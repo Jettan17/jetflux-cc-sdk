@@ -1,4 +1,4 @@
-# JetFlux SDK v2.3
+# JetFlux SDK v2.4
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
@@ -255,6 +255,19 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 - [CLAUDE.md](CLAUDE.md) - Master directives and all commands
 - [instructions.md](instructions.md) - Project setup template
 - [.claude/commands/](.claude/commands/) - All 15 slash command files
+
+## Releases
+
+See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for full changelog.
+
+| Version | Highlights |
+|---------|------------|
+| **v2.4** | New `/run` command, restructured workflow (`/design` → `/run` → `/tdd`) |
+| **v2.2** | Synced project init question types |
+| **v2.1** | Fixed command name clash with CC CLI |
+| **v2.0** | Streamlined commands |
+| **v1.1** | Changed project init workflow |
+| **v1.0** | Initial streamlined SDK |
 
 ## License
 
