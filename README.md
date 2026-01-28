@@ -1,4 +1,4 @@
-# JetFlux SDK v2.1
+# JetFlux SDK v2.2
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
