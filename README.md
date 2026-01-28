@@ -263,11 +263,12 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 | Version | Highlights |
 |---------|------------|
 | **v2.4** | New `/run` command, restructured workflow (`/design` → `/run` → `/tdd`) |
+| **v2.3** | Pre-restructure stable release |
 | **v2.2** | Synced project init question types |
-| **v2.1** | Fixed command name clash with CC CLI |
-| **v2.0** | Streamlined commands |
-| **v1.1** | Changed project init workflow |
-| **v1.0** | Initial streamlined SDK |
+| **v2.1** | Fixed command name clash with CC CLI (`/plan`→`/design`, `/init`→`/sdk`) |
+| **v2.0** | Major command consolidation (20+ → 14 commands) |
+| **v1.1** | Added `/update-readme`, improved project init |
+| **v1.0** | Initial streamlined SDK, core workflow established |
 
 ## License
 
