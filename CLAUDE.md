@@ -9,7 +9,7 @@ This project uses the **everything-claude-code (ECC)** plugin for structured dev
 **At the start of EVERY session, you MUST:**
 
 1. **Read `instructions.md`** to load project context
-2. **Check if Project Settings are empty** (Scope, Final Product, Objective are blank)
+2. **Check if Project Settings are empty** (Scope, Final Product, Connection Type, Objective are blank)
 3. **If empty, gather settings using AskUserQuestion tool:**
    - Use 2-4 options per question (Claude Code adds "Other" automatically)
    - Do NOT add custom "Other" options - duplicates will appear
@@ -18,6 +18,20 @@ This project uses the **everything-claude-code (ECC)** plugin for structured dev
 5. **Always reference Project Settings and Must Do** when running commands
 
 **If Project Settings ARE filled**, acknowledge them and proceed with the user's request.
+
+## ⚠️ New Project Directory Guardrail
+
+**NEVER create a new project directory inside the SDK directory.**
+
+When initializing a new project:
+1. **Prompt the user** for the desired project directory path
+2. **Default suggestion**: Parent directory of the SDK (e.g., `../<project-name>`)
+3. **Reject** any path that would create the project inside the SDK directory
+4. **Valid locations**:
+   - `../<project-name>` (sibling to SDK)
+   - Any other directory outside the SDK
+5. **Invalid locations**:
+   - `./<anything>` or any subdirectory of the current SDK directory
 
 ## Quick Start
 
@@ -250,6 +264,7 @@ When starting a new project, configure these in `instructions.md`:
 - **Final Product**: Web / Mobile / Desktop / Open-Ended
 - **Commercial or Personal Use**
 - **Objective/Use-Case**
+- **Connection Type**: Local / Public
 - **Data Sources**
 - **Visual Style**
 - **External Tool Integration**
