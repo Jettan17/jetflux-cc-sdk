@@ -1,4 +1,4 @@
-# JetFlux SDK
+# JetFlux SDK v2.1
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
@@ -50,10 +50,10 @@ instructions.md (context) + /design (command) → context-aware planning
 ┌─────────────────────────────────────────────────────────────┐
 │  PHASE 1: SETUP & PLANNING                                  │
 ├─────────────────────────────────────────────────────────────┤
-│  /sdk            → Initialize new project OR update SDK    │
-│  /setup-pm        → Configure/change package manager        │
-│  /design            → Design implementation approach          │
-│  /update-docs     → Document initial structure              │
+│  /sdk            → Initialize new project OR update SDK     │
+│  /setup-pm       → Configure/change package manager         │
+│  /design         → Design implementation approach           │
+│  /update-docs    → Document initial structure               │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
