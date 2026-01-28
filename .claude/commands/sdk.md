@@ -35,17 +35,25 @@ The command automatically detects whether to run in **new project** or **update*
 
 #### Step 1: Gather Project Settings
 
-Use AskUserQuestion to collect:
+Use AskUserQuestion to collect (ALL in first batch, max 4 questions per call):
 
+**Batch 1:**
 | Setting | Options |
 |---------|---------|
 | **Scope** | Small / Medium / Large |
 | **Product Type** | Web / Mobile / Desktop |
 | **Usage** | Commercial / Personal |
+| **Connection Type** | Local / Public |
+
+**Batch 2:**
+| Setting | Options |
+|---------|---------|
 | **Tech Stack** | Next.js / Astro / React / Vue / Plain HTML / Python / Flutter |
 | **Visual Style** | Minimal / Dark / Colorful / Professional |
 
-Then ask free-text questions:
+**CRITICAL: Always ask Connection Type (Local/Public) - do NOT skip this question.**
+
+Then ask free-text questions (as regular questions, not AskUserQuestion):
 - Objective/Use-case
 - Data sources (optional)
 - External integrations (optional)
@@ -102,6 +110,9 @@ Replace the Project Settings section with gathered values:
 
 ## Commercial or Personal Use
 [Selected usage]
+
+## Local or Public Connection
+[Selected connection type]
 
 ## Objective/Use-Case
 [User's objective]
