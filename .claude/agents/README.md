@@ -26,46 +26,43 @@ This directory contains specialized subagents for the Claude Code SDK developmen
 
 ### Phase 1: Analysis & Planning
 ```
-1. > Use ultrathink-analyst for complex requirement analysis
-2. > Use requirements-analyst for systematic breakdown
-3. > Use framework-advisor for technology decisions
+1. Run /design to create implementation plan
+2. > Use ultrathink-analyst for complex requirement analysis
+3. > Use requirements-analyst for systematic breakdown
+4. > Use framework-advisor for technology decisions
+5. > Use todo-manager to create task breakdown
 ```
 
-### Phase 2: Task Management
+### Phase 2: Implementation
 ```
-1. > Use todo-manager to create task breakdown
-2. > Use gh-manager to sync with GitHub Projects
-3. > Use intermediate-reviewer to validate plan
-```
-
-### Phase 3: Implementation
-```
-For each component:
-1. Run /tdd for test-first development
+1. Run /run to execute the plan (uses TDD when recommended)
 2. > Use ui-engineer for frontend components
 3. > Use flutter-specialist for mobile components
 4. > Use gold-standards-validator to ensure compliance
 5. > Use intermediate-reviewer to review progress
 ```
 
-### Phase 4: Testing & Documentation
+### Phase 3: Testing & Quality
 ```
-1. Run /e2e for end-to-end tests
-2. > Use documentation-validator to verify docs
-3. > Use todo-manager to update task status
+1. Run /tdd to run all tests
+2. Run /tdd e2e for end-to-end tests
+3. Run /tdd coverage to check coverage gaps
+4. > Use documentation-validator to verify docs
+5. > Use todo-manager to update task status
 ```
 
-### Phase 5: Deployment
+### Phase 4: Deployment
 ```
 1. Run /deploy for Docker/Kubernetes setup
 2. > Use deployment-specialist for production config
 ```
 
-### Phase 6: Release
+### Phase 5: Release
 ```
 1. Run /code-review for final quality check
 2. > Use security-auditor for security scan
 3. > Use intermediate-reviewer for final critique
+4. > Use gh-manager to sync with GitHub Projects
 ```
 
 ---

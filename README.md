@@ -1,11 +1,11 @@
-# JetFlux SDK v2.2
+# JetFlux SDK v2.3
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
 ## Features
 
 - **13 Enhanced Agents** - Specialized agents for different task types
-- **14 Slash Commands** - Streamlined development workflows
+- **15 Slash Commands** - Streamlined development workflows
 - **6-Phase Development Workflow** - Structured approach from planning to deployment
 
 ## Quick Start
@@ -25,11 +25,11 @@ On first session, Claude prompts for project settings (scope, product type, obje
 instructions.md (context) + /design (command) → context-aware planning
 ```
 
-## Slash Commands (14 total)
+## Slash Commands (15 total)
 
 | Category | Commands |
 |----------|----------|
-| **Core** | `/tdd`, `/design`, `/code-review`, `/build-fix` |
+| **Core** | `/design`, `/run`, `/tdd`, `/code-review`, `/build-fix` |
 | **Quality** | `/verify`, `/checkpoint` |
 | **Operations** | `/sdk`, `/deploy`, `/setup-pm` |
 | **Documentation** | `/update-docs`, `/learn` |
@@ -52,21 +52,21 @@ instructions.md (context) + /design (command) → context-aware planning
 ├─────────────────────────────────────────────────────────────┤
 │  /sdk            → Initialize new project OR update SDK     │
 │  /setup-pm       → Configure/change package manager         │
-│  /design         → Design implementation approach           │
+│  /design         → Create plan (saves to .claude/plans/)    │
 │  /update-docs    → Document initial structure               │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │  PHASE 2: IMPLEMENTATION (repeat for each feature)          │
 ├─────────────────────────────────────────────────────────────┤
-│  /tdd             → Write tests FIRST, then implement       │
-│  /tdd e2e         → End-to-end tests with Playwright        │
+│  /run             → Execute plan (smart TDD integration)    │
 │  /checkpoint      → Save progress after milestone           │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │  PHASE 3: TESTING & QUALITY                                 │
 ├─────────────────────────────────────────────────────────────┤
+│  /tdd             → Run tests (unit, integration, E2E)      │
 │  /tdd --full      → Complete test suite + coverage          │
 │  /ai-eval         → Test AI features (if applicable)        │
 │  /verify          → Run full validation                     │
@@ -100,7 +100,7 @@ instructions.md (context) + /design (command) → context-aware planning
 |------|-----|
 | Starting a new project | `/sdk` (full setup) |
 | Updating SDK in existing project | `/sdk --update` (refreshes SDK files) |
-| Adding a feature | `/design` → `/tdd` → `/checkpoint` |
+| Adding a feature | `/design` → `/run` → `/tdd` → `/checkpoint` |
 | Complex cross-cutting work | `/orchestrate` (coordinates multiple phases) |
 | Build broken | `/build-fix` |
 | Before committing | `/code-review` → `/verify` |
@@ -113,7 +113,7 @@ instructions.md (context) + /design (command) → context-aware planning
 
 For quick tasks:
 ```
-/design → /tdd → /verify → /code-review
+/design → /run → /tdd → /verify
 ```
 
 ## Directory Structure
@@ -121,9 +121,13 @@ For quick tasks:
 ```
 jetflux-sdk/
 ├── .claude/
-│   ├── commands/         # 14 slash commands (/sdk, /tdd, /design, etc.)
+│   ├── commands/         # 15 slash commands (/sdk, /design, /run, /tdd, etc.)
 │   ├── agents/           # 13 enhanced agents
-│   └── mcp-configs/      # MCP server configurations
+│   ├── plans/            # Implementation plans (created by /design)
+│   ├── mcp-configs/      # MCP server configurations
+│   └── checkpoints.log   # Quick checkpoint index
+├── docs/
+│   └── checkpoints/      # Checkpoint files (created by /checkpoint)
 ├── CLAUDE.md             # Master directives
 ├── instructions.md       # Project setup template
 └── README.md
@@ -181,13 +185,18 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 
 | Command | Arguments/Flags | Description |
 |---------|-----------------|-------------|
-| `/tdd` | *(interactive)* | Interactive TDD workflow |
-| | `unit` | Focus on unit tests |
+| `/design` | *(interactive)* | Creates plan, saves to .claude/plans/current.md |
+| `/run` | *(none)* | Execute current plan with smart TDD |
+| | `--force-tdd` | Force TDD even if plan says No |
+| | `--no-tdd` | Skip TDD even if plan says Yes |
+| | `--phase N` | Start from specific phase |
+| | `--dry-run` | Preview without executing |
+| `/tdd` | *(none)* | Run all tests |
+| | `unit` | Unit tests only |
 | | `integration` | Integration tests (NO MOCKING) |
 | | `e2e` | E2E tests with Playwright |
-| | `coverage` | Analyze + generate missing tests |
+| | `coverage` | Analyze coverage gaps |
 | | `--full` | All tests + coverage + no-stubs |
-| `/design` | *(interactive)* | Generates plan, waits for confirmation |
 | `/build-fix` | *(auto)* | Incrementally fixes build errors |
 | `/code-review` | *(none)* | Review local changes + dead code cleanup |
 | | `--no-clean` | Skip dead code cleanup |
@@ -204,7 +213,8 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 | | `pre-pr` | Full + security scan |
 | | `--e2e` | Include E2E tests |
 | | `--full` | All checks including E2E |
-| `/checkpoint` | `create <name>` | Create named checkpoint |
+| `/checkpoint` | `create <name>` | Create named checkpoint (local) |
+| | `create <name> --push` | Create checkpoint and push to remote |
 | | `verify <name>` | Compare against checkpoint |
 | | `list` | Show all checkpoints |
 | | `clear` | Remove old checkpoints (keeps 5) |
@@ -244,7 +254,7 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 
 - [CLAUDE.md](CLAUDE.md) - Master directives and all commands
 - [instructions.md](instructions.md) - Project setup template
-- [.claude/commands/](.claude/commands/) - All 14 slash command files
+- [.claude/commands/](.claude/commands/) - All 15 slash command files
 
 ## License
 

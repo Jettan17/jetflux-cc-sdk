@@ -38,12 +38,13 @@ When initializing a new project:
 ### Plugin Status: INSTALLED ✓
 The everything-claude-code plugin is installed at `~/.claude/plugins/everything-claude-code/`
 
-### Available Slash Commands (14 total)
+### Available Slash Commands (15 total)
 | Command | Description |
 |---------|-------------|
 | `/sdk` | Initialize new project or update SDK files |
-| `/tdd` | Test-driven development (unit, integration, E2E, coverage) |
-| `/design` | Implementation planning |
+| `/design` | Create implementation plan (saves to file, does NOT implement) |
+| `/run` | Execute plan with smart TDD (reads plan, implements code) |
+| `/tdd` | Test utilities only (run tests, coverage, E2E - no implementation) |
 | `/code-review` | Quality review + dead code cleanup (local, PR, issue fix modes) |
 | `/build-fix` | Build error resolution |
 | `/verify` | Verification loop execution |
@@ -95,25 +96,26 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 
 ### Phase 1: Analysis & Planning
 ```
-1. Run /design to design implementation approach
+1. Run /design to create implementation plan (saved to .claude/plans/current.md)
 2. > Use ultrathink-analyst for complex requirements
 3. > Use todo-manager to create task breakdown
+4. Plan includes TDD recommendation (Yes/No with reason)
 ```
 
-### Phase 2: Implementation (TDD)
+### Phase 2: Implementation
 ```
-For each component:
-1. Run /tdd to write tests first (includes no-stubs check)
-2. Implement to pass tests
-3. Run /tdd e2e for end-to-end tests
-4. > Use intermediate-reviewer for progress review
+1. Run /run to execute the plan
+   - If TDD Recommended=Yes: Writes tests first, then implements (RED→GREEN→REFACTOR)
+   - If TDD Recommended=No: Implements directly
+2. > Use intermediate-reviewer for progress review
 ```
 
 ### Phase 3: Testing & Quality
 ```
-1. Run /tdd --full for comprehensive testing
+1. Run /tdd to run all tests
 2. Run /tdd coverage to check coverage gaps
-3. Run /verify for full validation
+3. Run /tdd --full for comprehensive testing
+4. Run /verify for full validation
 ```
 
 ### Phase 4: Deployment
@@ -241,8 +243,9 @@ All commands are in `.claude/commands/`:
 | Command | Category | Description |
 |---------|----------|-------------|
 | `/sdk` | Operations | Initialize project or update SDK |
-| `/tdd` | Core | Test-driven development (unit, integration, E2E, coverage) |
-| `/design` | Core | Implementation planning |
+| `/design` | Core | Create implementation plan (saves to file) |
+| `/run` | Core | Execute plan with smart TDD integration |
+| `/tdd` | Core | Test utilities (run tests, coverage, E2E) |
 | `/code-review` | Core | Quality review + dead code cleanup |
 | `/build-fix` | Core | Build error resolution |
 | `/verify` | Quality | Verification loop |
@@ -275,19 +278,26 @@ When starting a new project, configure these in `instructions.md`:
 ## Quick Commands Reference
 
 ```bash
-# Development
-/tdd              # TDD workflow (unit, integration, E2E, coverage)
+# Planning & Implementation
+/design           # Create plan (saves to .claude/plans/current.md)
+/run              # Execute plan (smart TDD based on recommendation)
+/run --force-tdd  # Force TDD even if plan says No
+/run --no-tdd     # Skip TDD even if plan says Yes
+
+# Testing (utilities only, no implementation)
+/tdd              # Run all tests
+/tdd unit         # Unit tests only
+/tdd integration  # Integration tests (NO MOCKING enforced)
 /tdd e2e          # E2E tests with Playwright
-/tdd coverage     # Analyze and fill coverage gaps
+/tdd coverage     # Analyze coverage gaps
 /tdd --full       # All tests + coverage + no-stubs check
-/design           # Plan implementation
-/code-review      # Review code quality
-/orchestrate      # Multi-agent orchestration
 
 # Quality
 /verify           # Run verification loop
 /verify --full    # Full verification with E2E
-/checkpoint       # Save verification state
+/checkpoint             # Save verification state (local commit)
+/checkpoint --push      # Save and push to remote
+/code-review      # Review code quality
 
 # Deployment & Operations
 /deploy           # Auto-detect best platform
@@ -298,6 +308,7 @@ When starting a new project, configure these in `instructions.md`:
 # Maintenance
 /build-fix        # Fix build errors
 /update-docs      # Sync all documentation
+/orchestrate      # Multi-agent orchestration
 
 # Learning & AI
 /learn            # Extract patterns from session

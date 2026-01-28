@@ -39,11 +39,12 @@
 Should show `everything-claude-code` as installed.
 
 ## Step 4: Test Commands
-Try running `/design` or `/tdd` to verify the plugin is working.
+Try running `/design` or `/run` to verify the plugin is working.
 
-## Available Slash Commands (14 total)
-- `/tdd` - Test-driven development (unit, integration, E2E, coverage)
-- `/design` - Implementation planning
+## Available Slash Commands (15 total)
+- `/design` - Create implementation plan (saves to .claude/plans/current.md)
+- `/run` - Execute plan with smart TDD integration
+- `/tdd` - Test utilities (run tests, coverage, E2E - no implementation)
 - `/code-review` - Quality review + dead code cleanup
 - `/build-fix` - Build error resolution
 - `/verify` - Verification loop execution
@@ -165,7 +166,8 @@ Update the "Project Settings" section at the top of this file with the answers.
 - Document all work in markdown files AS YOU WORK (not at the end)
 - Use numbered format: `01-...`, `02-...`, etc.
 - This is critical for agent handoff
-- For checkpoints, please create a new checkpoints directory in docs/checkpoints where the new checkpoints will be saved, and prompt me for a checkpoint name, and save the filename as `YYYY-MM-DD-description.md`
+- For checkpoints, use `/checkpoint create <name>` which saves to `docs/checkpoints/YYYY-MM-DD-<name>.md`
+- Use `/checkpoint create <name> --push` to also push to remote
 
 ## Development Practices
 - Refer to "Project Settings" and "Creating a New Project" for project scope and objectives, and other configurations to take note of

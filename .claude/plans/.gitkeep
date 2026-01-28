@@ -1,0 +1,12 @@
+# Plans Directory
+
+This directory stores implementation plans created by `/design`.
+
+## Files
+- `current.md` - The most recent plan (created by `/design`)
+- Archived plans can be stored with timestamps: `YYYY-MM-DD-<name>.md`
+
+## Workflow
+1. `/design` creates a plan and saves it here
+2. `/run` reads and executes the plan
+3. After execution, plan can be archived or deleted
