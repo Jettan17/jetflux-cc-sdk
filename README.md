@@ -1,4 +1,4 @@
-# JetFlux SDK v2.4
+# JetFlux SDK v2.5.1
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
@@ -262,6 +262,7 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v2.5.1** | Fixed `/sdk` to include Connection Type question |
 | **v2.4** | New `/run` command, restructured workflow (`/design` → `/run` → `/tdd`) |
 | **v2.3** | Pre-restructure stable release |
 | **v2.2** | Synced project init question types |
