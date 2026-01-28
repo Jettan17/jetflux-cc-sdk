@@ -35,7 +35,7 @@ The command automatically detects whether to run in **new project** or **update*
 
 #### Step 1: Gather Project Settings
 
-Use AskUserQuestion to collect (ALL in first batch, max 4 questions per call):
+Use AskUserQuestion to collect (max 4 questions per call):
 
 **Batch 1:**
 | Setting | Options |
@@ -50,8 +50,6 @@ Use AskUserQuestion to collect (ALL in first batch, max 4 questions per call):
 |---------|---------|
 | **Tech Stack** | Next.js / Astro / React / Vue / Plain HTML / Python / Flutter |
 | **Visual Style** | Minimal / Dark / Colorful / Professional |
-
-**CRITICAL: Always ask Connection Type (Local/Public) - do NOT skip this question.**
 
 Then ask free-text questions (as regular questions, not AskUserQuestion):
 - Objective/Use-case
