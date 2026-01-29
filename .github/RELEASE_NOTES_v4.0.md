@@ -1,4 +1,4 @@
-## What's New in v2.4
+## What's New in v4.0
 
 ### New Command: `/run`
 Execute implementation plans with smart TDD integration. Reads plans created by `/design` and automatically applies TDD workflow when recommended.
@@ -11,7 +11,7 @@ Execute implementation plans with smart TDD integration. Reads plans created by 
 
 ### Restructured Workflow
 
-| Before (v2.3) | After (v2.4) |
+| Before (v3.2) | After (v4.0) |
 |---------------|--------------|
 | `/design` → `/tdd` → `/verify` | `/design` → `/run` → `/tdd` → `/verify` |
 

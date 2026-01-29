@@ -1,4 +1,4 @@
-# JetFlux SDK v2.5
+# JetFlux SDK v5.0
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
@@ -262,12 +262,12 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
-| **v2.5** | Consolidated `instructions.md` → `project-settings.md`, removed 100+ lines of duplication, added Session Requirements to CLAUDE.md |
-| **v2.4.1** | Fixed `/sdk` to include Connection Type question |
-| **v2.4** | New `/run` command, restructured workflow (`/design` → `/run` → `/tdd`) |
-| **v2.3** | Pre-restructure stable release |
-| **v2.2** | Synced project init question types |
-| **v2.1** | Fixed command name clash with CC CLI (`/plan`→`/design`, `/init`→`/sdk`) |
+| **v5.0** | Consolidated `instructions.md` → `project-settings.md`, removed 100+ lines of duplication, added Session Requirements to CLAUDE.md |
+| **v4.0.1** | Fixed `/sdk` to include Connection Type question |
+| **v4.0** | New `/run` command, restructured workflow (`/design` → `/run` → `/tdd`) |
+| **v3.2** | Pre-restructure stable release |
+| **v3.1** | Synced project init question types |
+| **v3.0** | Fixed command name clash with CC CLI (`/plan`→`/design`, `/init`→`/sdk`) - BREAKING |
 | **v2.0** | Major command consolidation (20+ → 14 commands) |
 | **v1.1** | Added `/update-readme`, improved project init |
 | **v1.0** | Initial streamlined SDK, core workflow established |
