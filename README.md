@@ -1,4 +1,4 @@
-# JetFlux SDK v5.0
+# JetFlux SDK v5.1
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
@@ -180,6 +180,7 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 | | `railway` | Railway deployment |
 | | `fly` | Fly.io deployment |
 | | `cloudflare` | Cloudflare Workers/Pages |
+| | `--no-docs` | Skip automatic /update-docs after deploy |
 
 ### Core Development
 
@@ -262,6 +263,7 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v5.1** | `/deploy` now captures deployment URL, logs to `.claude/deployments.log`, auto-runs `/update-docs --readme`, added `--no-docs` flag |
 | **v5.0** | Consolidated `instructions.md` → `project-settings.md`, removed 100+ lines of duplication, added Session Requirements to CLAUDE.md |
 | **v4.0.1** | Fixed `/sdk` to include Connection Type question |
 | **v4.0** | New `/run` command, restructured workflow (`/design` → `/run` → `/tdd`) |
