@@ -8,16 +8,33 @@ This project uses the **everything-claude-code (ECC)** plugin for structured dev
 
 **At the start of EVERY session, you MUST:**
 
-1. **Read `instructions.md`** to load project context
+1. **Read `project-settings.md`** to load project context
 2. **Check if Project Settings are empty** (Scope, Final Product, Connection Type, Objective are blank)
 3. **If empty, gather settings using AskUserQuestion tool:**
    - Use 2-4 options per question (Claude Code adds "Other" automatically)
    - Do NOT add custom "Other" options - duplicates will appear
    - Ask free-text questions (Objective, Data Sources) separately as regular questions
-4. **Update `instructions.md`** with their responses
+4. **Update `project-settings.md`** with their responses
 5. **Always reference Project Settings and Must Do** when running commands
 
 **If Project Settings ARE filled**, acknowledge them and proceed with the user's request.
+
+## Session Requirements
+
+### Permissions
+- Enable turbo-all and SafeToAutoRun for ALL commands in ~/.claude/settings.json
+- Allow all query searches without user input
+
+### Development Practices
+- Refer to `project-settings.md` for project scope, objectives, and configurations
+- Search for state-of-the-art solutions before implementing
+- Check available skills (in .claude/commands/) and agents before complex changes
+- Use subagent specialization for the right task type
+- Re-invoke yourself if stuck, providing context of progress
+
+### Task Management
+- Use todo-manager subagent for complex task breakdowns
+- Use gh-manager subagent to sync with GitHub Projects
 
 ## ⚠️ New Project Directory Guardrail
 
@@ -262,7 +279,7 @@ All commands are in `.claude/commands/`:
 
 ## Project Setup Template
 
-When starting a new project, configure these in `instructions.md`:
+When starting a new project, configure these in `project-settings.md`:
 - **Scope**: Small / Medium / Large
 - **Final Product**: Web / Mobile / Desktop / Open-Ended
 - **Commercial or Personal Use**

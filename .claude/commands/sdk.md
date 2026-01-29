@@ -68,13 +68,13 @@ mkdir [project-path]
 Copy from JetFlux SDK to new project:
 - `.claude/` folder (commands, agents, mcp-configs)
 - `CLAUDE.md` (master directives)
-- `instructions.md` (template)
+- `project-settings.md` (template)
 
 ```bash
 # PowerShell (Windows)
 Copy-Item -Path "[sdk]/.claude" -Destination "[project]/.claude" -Recurse
 Copy-Item "[sdk]/CLAUDE.md" "[project]/CLAUDE.md"
-Copy-Item "[sdk]/instructions.md" "[project]/instructions.md"
+Copy-Item "[sdk]/project-settings.md" "[project]/project-settings.md"
 ```
 
 ### Step 4: Initialize Framework
@@ -93,7 +93,7 @@ Based on tech stack selection:
 
 **Note:** Some commands require user interaction. Inform user and run command.
 
-### Step 5: Update instructions.md
+### Step 5: Update project-settings.md
 
 Replace the Project Settings section with gathered values:
 
@@ -172,10 +172,10 @@ Copy-Item -Path "[sdk]/.claude/*" -Destination ".claude/" -Recurse -Force
 # Update CLAUDE.md
 Copy-Item "[sdk]/CLAUDE.md" "CLAUDE.md" -Force
 
-# PRESERVE instructions.md - don't overwrite (contains project settings)
+# PRESERVE project-settings.md - don't overwrite (contains project settings)
 ```
 
-**Important:** `instructions.md` is NOT overwritten during updates to preserve project settings.
+**Important:** `project-settings.md` is NOT overwritten during updates to preserve project settings.
 
 #### Step 4: Show Update Summary
 
@@ -190,7 +190,7 @@ Updated:
 - CLAUDE.md
 
 Preserved:
-- instructions.md (project settings)
+- project-settings.md (project settings)
 
 SDK Version: [commit hash or date]
 ```
@@ -260,6 +260,6 @@ Available commands:
 
 - Command auto-detects new vs existing projects based on `.claude/` folder presence
 - For new projects: gathers settings, initializes framework, copies SDK files
-- For existing projects: updates SDK files only, preserves `instructions.md`
+- For existing projects: updates SDK files only, preserves `project-settings.md`
 - Framework initialization may require user interaction (prompts)
-- Always verify `instructions.md` after initialization
+- Always verify `project-settings.md` after initialization

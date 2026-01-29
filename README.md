@@ -1,4 +1,4 @@
-# JetFlux SDK v2.4.1
+# JetFlux SDK v2.5
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
@@ -18,11 +18,11 @@ A Claude Code development environment using **everything-claude-code (ECC)** for
 ```
 
 ### 2. Project Initialization
-On first session, Claude prompts for project settings (scope, product type, objective). These are saved to `instructions.md`.
+On first session, Claude prompts for project settings (scope, product type, objective). These are saved to `project-settings.md`.
 
 ### 3. Running Commands
 ```
-instructions.md (context) + /design (command) → context-aware planning
+project-settings.md (context) + /design (command) → context-aware planning
 ```
 
 ## Slash Commands (15 total)
@@ -129,7 +129,7 @@ jetflux-sdk/
 ├── docs/
 │   └── checkpoints/      # Checkpoint files (created by /checkpoint)
 ├── CLAUDE.md             # Master directives
-├── instructions.md       # Project setup template
+├── project-settings.md   # Project setup template
 └── README.md
 ```
 
@@ -253,7 +253,7 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 ## Documentation
 
 - [CLAUDE.md](CLAUDE.md) - Master directives and all commands
-- [instructions.md](instructions.md) - Project setup template
+- [project-settings.md](project-settings.md) - Project setup template
 - [.claude/commands/](.claude/commands/) - All 15 slash command files
 
 ## Releases
@@ -262,6 +262,7 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v2.5** | Consolidated `instructions.md` → `project-settings.md`, removed 100+ lines of duplication, added Session Requirements to CLAUDE.md |
 | **v2.4.1** | Fixed `/sdk` to include Connection Type question |
 | **v2.4** | New `/run` command, restructured workflow (`/design` → `/run` → `/tdd`) |
 | **v2.3** | Pre-restructure stable release |

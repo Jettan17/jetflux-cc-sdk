@@ -52,7 +52,7 @@ When session analysis identifies improvements for future work.
 - "I kept making the same mistake..."
 - "How can I improve my workflow?"
 
-**Output:** Suggestions for CLAUDE.md or instructions.md updates
+**Output:** Suggestions for CLAUDE.md or project-settings.md updates
 
 ### Eureka Mode
 
