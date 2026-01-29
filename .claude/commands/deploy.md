@@ -172,13 +172,44 @@ When running /deploy:
 5. Create .dockerignore / .vercelignore as needed
 6. Configure environment variables
 7. Document deployment process
+8. **Capture deployment URL** from platform output
+9. **Log deployment** to `.claude/deployments.log` with timestamp, platform, and URL
+10. **Run /update-docs --readme** to add deployment link to README
+
+---
+
+## Deployment URL Handling
+
+After successful deployment, the command:
+
+1. **Captures URL** from platform CLI output:
+   - Vercel: `https://<project>.vercel.app`
+   - Railway: `https://<project>.up.railway.app`
+   - Fly.io: `https://<app>.fly.dev`
+   - Cloudflare: `https://<project>.pages.dev` or Workers URL
+
+2. **Logs to `.claude/deployments.log`**:
+   ```
+   2026-01-29T14:30:00 | vercel | production | https://myapp.vercel.app
+   ```
+
+3. **Updates README.md** via `/update-docs --readme`:
+   - Adds deployment badge/link to header
+   - Updates "Deployment" section with live URL
+
+### Skip Documentation Update
+
+To skip the automatic docs update:
+```bash
+/deploy --no-docs
+```
 
 ---
 
 ## Arguments
 
-| Argument | Target Platform |
-|----------|-----------------|
+| Argument | Description |
+|----------|-------------|
 | *(none)* | Auto-detect best platform |
 | `docker` | Docker/Docker Compose |
 | `kubernetes` | Kubernetes manifests |
@@ -186,6 +217,7 @@ When running /deploy:
 | `railway` | Railway |
 | `fly` | Fly.io |
 | `cloudflare` | Cloudflare Workers/Pages |
+| `--no-docs` | Skip automatic /update-docs after deployment |
 
 ---
 
@@ -223,3 +255,4 @@ When running /deploy:
 - `/verify` - Run verification before deployment
 - `/code-review` - Review before deploying
 - `/tdd` - Ensure tests pass before deploy
+- `/update-docs` - Sync documentation (runs automatically post-deploy)
