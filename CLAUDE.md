@@ -55,10 +55,10 @@ When initializing a new project:
 ### Plugin Status: INSTALLED ✓
 The everything-claude-code plugin is installed at `~/.claude/plugins/everything-claude-code/`
 
-### Available Slash Commands (15 total)
+### Available Slash Commands (14 total)
 | Command | Description |
 |---------|-------------|
-| `/sdk` | Initialize new project or update SDK files |
+| `/sdk` | Initialize new project, update SDK files, configure package manager |
 | `/design` | Create implementation plan (saves to file, does NOT implement) |
 | `/run` | Execute plan with smart TDD (reads plan, implements code) |
 | `/tdd` | Test utilities only (run tests, coverage, E2E - no implementation) |
@@ -67,7 +67,6 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 | `/verify` | Verification loop execution |
 | `/checkpoint` | Verification state saving |
 | `/deploy` | Deploy to Docker, K8s, Vercel, Railway, Fly.io |
-| `/setup-pm` | Package manager configuration |
 | `/update-docs` | Sync all documentation (README, codemaps, API) |
 | `/learn` | Pattern extraction with auto-detection |
 | `/ai-eval` | AI feature evaluation harness |
@@ -259,7 +258,7 @@ All commands are in `.claude/commands/`:
 
 | Command | Category | Description |
 |---------|----------|-------------|
-| `/sdk` | Operations | Initialize project or update SDK |
+| `/sdk` | Operations | Initialize project, update SDK, configure package manager |
 | `/design` | Core | Create implementation plan (saves to file) |
 | `/run` | Core | Execute plan with smart TDD integration |
 | `/tdd` | Core | Test utilities (run tests, coverage, E2E) |
@@ -268,7 +267,6 @@ All commands are in `.claude/commands/`:
 | `/verify` | Quality | Verification loop |
 | `/checkpoint` | Quality | Save verification state |
 | `/deploy` | Operations | Deploy to Docker, K8s, Vercel, Railway, etc. |
-| `/setup-pm` | Operations | Package manager setup |
 | `/update-docs` | Documentation | Sync all docs (README, codemaps, API) |
 | `/learn` | Documentation | Pattern extraction (auto-detect) |
 | `/ai-eval` | Advanced | AI feature evaluation harness |
@@ -320,7 +318,7 @@ When starting a new project, configure these in `project-settings.md`:
 /deploy           # Auto-detect best platform
 /deploy vercel    # Deploy to Vercel
 /deploy railway   # Deploy to Railway
-/setup-pm         # Configure package manager
+/sdk --pm pnpm    # Configure package manager
 
 # Maintenance
 /build-fix        # Fix build errors

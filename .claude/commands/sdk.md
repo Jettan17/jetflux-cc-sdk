@@ -49,6 +49,7 @@ Use AskUserQuestion to collect (max 4 questions per call):
 | Setting | Options |
 |---------|---------|
 | **Tech Stack** | Next.js / Astro / React / Vue / Plain HTML / Python / Flutter |
+| **Package Manager** | pnpm (Recommended) / npm / yarn / bun |
 | **Visual Style** | Minimal / Dark / Colorful / Professional |
 
 Then ask free-text questions (as regular questions, not AskUserQuestion):
@@ -93,6 +94,23 @@ Based on tech stack selection:
 
 **Note:** Some commands require user interaction. Inform user and run command.
 
+### Step 4b: Configure Package Manager
+
+Based on package manager selection, save preference:
+
+```bash
+# Create .claude/package-manager.json
+echo '{"packageManager": "[selected]"}' > .claude/package-manager.json
+```
+
+**Detection Priority** (when determining which package manager to use):
+1. Environment variable: `CLAUDE_PACKAGE_MANAGER`
+2. Project config: `.claude/package-manager.json`
+3. `package.json`: `packageManager` field
+4. Lock file presence (package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb)
+5. Global config: `~/.claude/package-manager.json`
+6. Fallback: pnpm > bun > yarn > npm
+
 ### Step 5: Update project-settings.md
 
 Replace the Project Settings section with gathered values:
@@ -111,6 +129,9 @@ Replace the Project Settings section with gathered values:
 
 ## Local or Public Connection
 [Selected connection type]
+
+## Package Manager
+[Selected package manager]
 
 ## Objective/Use-Case
 [User's objective]
@@ -226,6 +247,8 @@ Available commands:
 - `--no-git` - Skip git initialization (new projects only)
 - `--no-framework` - Skip framework scaffolding (new projects only)
 - `--no-backup` - Skip backup prompt during updates
+- `--pm <manager>` - Set package manager directly (pnpm/npm/yarn/bun)
+- `--pm detect` - Auto-detect package manager from lockfiles
 
 ## Agent Escalation
 
@@ -254,6 +277,12 @@ Available commands:
 
 # UPDATE: Quick update without backup prompt
 /sdk --update --no-backup
+
+# NEW PROJECT: Specify package manager directly
+/sdk my-project --pm pnpm
+
+# NEW PROJECT: Auto-detect package manager from existing lockfiles
+/sdk --pm detect
 ```
 
 ## Notes

@@ -5,7 +5,7 @@ A Claude Code development environment using **everything-claude-code (ECC)** for
 ## Features
 
 - **13 Enhanced Agents** - Specialized agents for different task types
-- **15 Slash Commands** - Streamlined development workflows
+- **14 Slash Commands** - Streamlined development workflows
 - **6-Phase Development Workflow** - Structured approach from planning to deployment
 
 ## Quick Start
@@ -25,13 +25,13 @@ On first session, Claude prompts for project settings (scope, product type, obje
 project-settings.md (context) + /design (command) → context-aware planning
 ```
 
-## Slash Commands (15 total)
+## Slash Commands (14 total)
 
 | Category | Commands |
 |----------|----------|
 | **Core** | `/design`, `/run`, `/tdd`, `/code-review`, `/build-fix` |
 | **Quality** | `/verify`, `/checkpoint` |
-| **Operations** | `/sdk`, `/deploy`, `/setup-pm` |
+| **Operations** | `/sdk`, `/deploy` |
 | **Documentation** | `/update-docs`, `/learn` |
 | **Advanced** | `/ai-eval`, `/orchestrate`, `/create-command` |
 
@@ -121,7 +121,7 @@ For quick tasks:
 ```
 jetflux-sdk/
 ├── .claude/
-│   ├── commands/         # 15 slash commands (/sdk, /design, /run, /tdd, etc.)
+│   ├── commands/         # 14 slash commands (/sdk, /design, /run, /tdd, etc.)
 │   ├── agents/           # 13 enhanced agents
 │   ├── plans/            # Implementation plans (created by /design)
 │   ├── mcp-configs/      # MCP server configurations
@@ -169,10 +169,8 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 | | `--no-git` | Skip git initialization |
 | | `--no-framework` | Skip framework scaffolding |
 | | `--no-backup` | Skip backup prompt during updates |
-| `/setup-pm` | `--detect` | Show current package manager |
-| | `--global <pm>` | Set global preference |
-| | `--project <pm>` | Set project preference |
-| | `--list` | List available package managers |
+| | `--pm <manager>` | Set package manager (pnpm/npm/yarn/bun) |
+| | `--pm detect` | Auto-detect from lockfiles |
 | `/deploy` | *(auto-detect)* | Auto-detect best platform |
 | | `docker` | Docker/Docker Compose |
 | | `kubernetes` | Kubernetes manifests |

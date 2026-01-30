@@ -10,6 +10,8 @@
 
 ## Local or Public Connection
 
+## Package Manager
+
 ## Data Sources
 
 ## Visual Style
