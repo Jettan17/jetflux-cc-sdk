@@ -1,4 +1,4 @@
-# JetFlux SDK v5.2.1
+# JetFlux SDK v5.3.0
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
@@ -266,6 +266,8 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v5.3.0** | New `/release` command for proper versioning and release workflow |
+| **v5.2** | Encapsulated `/setup-pm` into `/sdk` command (15 → 14 → 15 commands) |
 | **v5.1** | `/deploy` now captures deployment URL, logs to `.claude/deployments.log`, auto-runs `/update-docs --readme`, added `--no-docs` flag |
 | **v5.0** | Consolidated `instructions.md` → `project-settings.md`, removed 100+ lines of duplication, added Session Requirements to CLAUDE.md |
 | **v4.0.1** | Fixed `/sdk` to include Connection Type question |
