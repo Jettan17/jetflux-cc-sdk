@@ -1,11 +1,11 @@
-# JetFlux SDK v5.1
+# JetFlux SDK v5.2
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
 ## Features
 
 - **13 Enhanced Agents** - Specialized agents for different task types
-- **14 Slash Commands** - Streamlined development workflows
+- **15 Slash Commands** - Streamlined development workflows
 - **6-Phase Development Workflow** - Structured approach from planning to deployment
 
 ## Quick Start
@@ -25,13 +25,13 @@ On first session, Claude prompts for project settings (scope, product type, obje
 project-settings.md (context) + /design (command) → context-aware planning
 ```
 
-## Slash Commands (14 total)
+## Slash Commands (15 total)
 
 | Category | Commands |
 |----------|----------|
 | **Core** | `/design`, `/run`, `/tdd`, `/code-review`, `/build-fix` |
 | **Quality** | `/verify`, `/checkpoint` |
-| **Operations** | `/sdk`, `/deploy` |
+| **Operations** | `/sdk`, `/deploy`, `/release` |
 | **Documentation** | `/update-docs`, `/learn` |
 | **Advanced** | `/ai-eval`, `/orchestrate`, `/create-command` |
 
@@ -121,7 +121,7 @@ For quick tasks:
 ```
 jetflux-sdk/
 ├── .claude/
-│   ├── commands/         # 14 slash commands (/sdk, /design, /run, /tdd, etc.)
+│   ├── commands/         # 15 slash commands (/sdk, /design, /run, /tdd, etc.)
 │   ├── agents/           # 13 enhanced agents
 │   ├── plans/            # Implementation plans (created by /design)
 │   ├── mcp-configs/      # MCP server configurations
@@ -179,6 +179,11 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 | | `fly` | Fly.io deployment |
 | | `cloudflare` | Cloudflare Workers/Pages |
 | | `--no-docs` | Skip automatic /update-docs after deploy |
+| `/release` | *(interactive)* | Prompts for version type |
+| | `patch` | Bump patch (1.0.0 → 1.0.1) |
+| | `minor` | Bump minor (1.0.0 → 1.1.0) |
+| | `major` | Bump major (1.0.0 → 2.0.0) |
+| | `--dry-run` | Preview without executing |
 
 ### Core Development
 

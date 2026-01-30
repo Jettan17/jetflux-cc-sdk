@@ -55,7 +55,7 @@ When initializing a new project:
 ### Plugin Status: INSTALLED ✓
 The everything-claude-code plugin is installed at `~/.claude/plugins/everything-claude-code/`
 
-### Available Slash Commands (14 total)
+### Available Slash Commands (15 total)
 | Command | Description |
 |---------|-------------|
 | `/sdk` | Initialize new project, update SDK files, configure package manager |
@@ -67,6 +67,7 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 | `/verify` | Verification loop execution |
 | `/checkpoint` | Verification state saving |
 | `/deploy` | Deploy to Docker, K8s, Vercel, Railway, Fly.io |
+| `/release` | Version release with proper versioning and documentation updates |
 | `/update-docs` | Sync all documentation (README, codemaps, API) |
 | `/learn` | Pattern extraction with auto-detection |
 | `/ai-eval` | AI feature evaluation harness |
@@ -267,6 +268,7 @@ All commands are in `.claude/commands/`:
 | `/verify` | Quality | Verification loop |
 | `/checkpoint` | Quality | Save verification state |
 | `/deploy` | Operations | Deploy to Docker, K8s, Vercel, Railway, etc. |
+| `/release` | Operations | Version release with documentation updates |
 | `/update-docs` | Documentation | Sync all docs (README, codemaps, API) |
 | `/learn` | Documentation | Pattern extraction (auto-detect) |
 | `/ai-eval` | Advanced | AI feature evaluation harness |
