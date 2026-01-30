@@ -18,6 +18,7 @@ Run and analyze tests. **Does NOT implement code** - use `/run` for implementati
 /tdd e2e                # Run E2E tests with Playwright
 /tdd coverage           # Analyze coverage, show gaps
 /tdd --full             # All tests + coverage report
+/tdd --from-plan        # Run tests based on plan's Test Strategy
 ```
 
 ## What This Command Does
@@ -30,6 +31,7 @@ Run and analyze tests. **Does NOT implement code** - use `/run` for implementati
 | `e2e` | Run Playwright E2E tests |
 | `coverage` | Analyze coverage and show uncovered files |
 | `--full` | All test types + coverage + no-stubs check |
+| `--from-plan` | Read Test Strategy from `.claude/plans/current.md` and run appropriate tests |
 
 ## Mode: Default (Run All Tests)
 
@@ -278,6 +280,43 @@ npm test -- --coverage --coverageReporters=text
 - `/verify` - Full verification including tests
 - `/code-review` - Review test quality
 - `/build-fix` - Fix build errors
+
+## Flag: `--from-plan`
+
+Run tests based on the Test Strategy in the current plan:
+
+```
+/tdd --from-plan
+
+Agent:
+Reading Test Strategy from .claude/plans/current.md...
+
+## Test Strategy Loaded
+
+| Phase | Code Type | Tests to Run |
+|-------|-----------|--------------|
+| 1 | API Endpoint | Integration (NO MOCK) |
+| 2 | UI Component | Unit + E2E |
+| 3 | Utility | Unit |
+
+Running tests by code type...
+
+### API Endpoints (Integration)
+  + tests/integration/users.test.ts - 5 passed
+  + tests/integration/auth.test.ts - 3 passed
+NO MOCKING policy: VERIFIED
+
+### UI Components (Unit + E2E)
+  + tests/unit/Button.test.tsx - 8 passed
+  + tests/e2e/user-profile.spec.ts - 2 passed
+
+### Utilities (Unit)
+  + tests/unit/formatters.test.ts - 12 passed
+
+All tests passed
+```
+
+This is useful after `/design` to validate tests exist before running `/run`.
 
 ## Workflow
 

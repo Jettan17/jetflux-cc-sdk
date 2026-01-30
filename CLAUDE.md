@@ -55,7 +55,7 @@ When initializing a new project:
 ### Plugin Status: INSTALLED ✓
 The everything-claude-code plugin is installed at `~/.claude/plugins/everything-claude-code/`
 
-### Available Slash Commands (15 total)
+### Available Slash Commands (17 total)
 | Command | Description |
 |---------|-------------|
 | `/sdk` | Initialize new project, update SDK files, configure package manager |
@@ -70,6 +70,8 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 | `/release` | Version release with proper versioning and documentation updates |
 | `/update-docs` | Sync all documentation (README, codemaps, API) |
 | `/learn` | Pattern extraction with auto-detection |
+| `/instinct` | Manage instincts (status, export, import) |
+| `/evolve` | Cluster instincts into commands/skills/agents |
 | `/ai-eval` | AI feature evaluation harness |
 | `/orchestrate` | Multi-agent orchestration |
 | `/create-command` | Create new custom commands interactively |
@@ -270,7 +272,9 @@ All commands are in `.claude/commands/`:
 | `/deploy` | Operations | Deploy to Docker, K8s, Vercel, Railway, etc. |
 | `/release` | Operations | Version release with documentation updates |
 | `/update-docs` | Documentation | Sync all docs (README, codemaps, API) |
-| `/learn` | Documentation | Pattern extraction (auto-detect) |
+| `/learn` | Learning | Pattern extraction (auto-detect) |
+| `/instinct` | Learning | Manage instincts (status, export, import) |
+| `/evolve` | Learning | Cluster instincts into commands/skills/agents |
 | `/ai-eval` | Advanced | AI feature evaluation harness |
 | `/orchestrate` | Advanced | Multi-agent coordination |
 | `/create-command` | Advanced | Create custom commands |
@@ -327,9 +331,16 @@ When starting a new project, configure these in `project-settings.md`:
 /update-docs      # Sync all documentation
 /orchestrate      # Multi-agent orchestration
 
-# Learning & AI
-/learn            # Extract patterns from session
-/ai-eval          # AI feature evaluation
+# Learning Pipeline: /learn → /instinct → /evolve
+/learn              # Extract patterns from session
+/instinct           # Show instinct status (default)
+/instinct status    # Show all learned instincts
+/instinct export    # Export instincts for sharing
+/instinct import    # Import instincts from teammates
+/evolve             # Cluster instincts into commands/skills/agents
+
+# AI Evaluation
+/ai-eval            # AI feature evaluation harness
 ```
 
 ---

@@ -14,11 +14,17 @@ Executes the implementation plan saved by `/design`. Automatically applies TDD w
 1. **Read Plan** - Load plan from `.claude/plans/current.md`
 2. **Validate Plan** - Check plan exists and is well-formed
 3. **Check TDD Recommendation** - Read the TDD recommendation from the plan
-4. **Execute Implementation:**
+4. **Read Test Strategy** - Load test types for each phase from the plan
+5. **Execute Implementation:**
    - If TDD Recommended = Yes: Full TDD cycle (RED → GREEN → REFACTOR)
    - If TDD Recommended = No: Direct implementation
-5. **Update Plan Status** - Mark phases as completed
-6. **Verify** - Ensure implementation matches plan requirements
+6. **Run Appropriate Tests** - Based on detected code types:
+   - UI Components → Unit + E2E
+   - API Endpoints → Integration (NO MOCK)
+   - Utilities → Unit only
+   - Services → Integration + Unit
+7. **Update Plan Status** - Mark phases as completed
+8. **Verify** - Ensure implementation matches plan requirements
 
 ## Usage
 
@@ -28,6 +34,10 @@ Executes the implementation plan saved by `/design`. Automatically applies TDD w
 /run --no-tdd           # Skip TDD even if plan says Yes
 /run --phase 2          # Start from specific phase
 /run --dry-run          # Show what would be done without executing
+/run --test-type unit   # Run only unit tests for each phase
+/run --test-type integration  # Run only integration tests
+/run --test-type e2e    # Run only E2E tests
+/run --test-type all    # Run all test types (default when TDD=Yes)
 ```
 
 ## How It Works
@@ -196,6 +206,44 @@ Started: 2026-01-28T10:46:00Z
 | `--phase N` | Start execution from phase N |
 | `--dry-run` | Preview execution plan without making changes |
 | `--continue` | Resume from last incomplete phase |
+| `--test-type <type>` | Override test types: `unit`, `integration`, `e2e`, or `all` |
+
+## Intelligent Test Selection
+
+When the plan includes a Test Strategy section, `/run` automatically selects appropriate tests:
+
+```
+Reading Test Strategy from plan...
+
+## Phase 1: Add User API
+Code Type: API Endpoint
+Primary Tests: Integration (NO MOCK)
+Secondary Tests: Unit
+
+Running tests for Phase 1...
+  + Unit tests: 5 passed
+  + Integration tests: 3 passed (real database)
+
+## Phase 2: Add User Profile Component
+Code Type: UI Component
+Primary Tests: Unit
+Secondary Tests: E2E
+
+Running tests for Phase 2...
+  + Unit tests: 8 passed
+  + E2E tests: 2 passed (Playwright)
+```
+
+### Test Selection Matrix
+
+| Code Type | Primary | Secondary | NO MOCK |
+|-----------|---------|-----------|---------|
+| UI Component | Unit | E2E | E2E only |
+| API Endpoint | Integration | Unit | Integration |
+| Utility | Unit | - | N/A |
+| Service | Integration | Unit | Integration |
+| Data Layer | Integration | - | Integration |
+| Page/Route | E2E | Unit | E2E |
 
 ## Integration with Other Commands
 

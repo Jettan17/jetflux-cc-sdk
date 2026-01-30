@@ -1,12 +1,13 @@
-# JetFlux SDK v5.3.0
+# JetFlux SDK v5.4.0
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
 ## Features
 
 - **13 Enhanced Agents** - Specialized agents for different task types
-- **15 Slash Commands** - Streamlined development workflows
+- **17 Slash Commands** - Streamlined development workflows
 - **6-Phase Development Workflow** - Structured approach from planning to deployment
+- **Learning Pipeline** - `/learn` → `/instinct` → `/evolve` for continuous improvement
 
 ## Quick Start
 
@@ -25,14 +26,15 @@ On first session, Claude prompts for project settings (scope, product type, obje
 project-settings.md (context) + /design (command) → context-aware planning
 ```
 
-## Slash Commands (15 total)
+## Slash Commands (17 total)
 
 | Category | Commands |
 |----------|----------|
 | **Core** | `/design`, `/run`, `/tdd`, `/code-review`, `/build-fix` |
 | **Quality** | `/verify`, `/checkpoint` |
 | **Operations** | `/sdk`, `/deploy`, `/release` |
-| **Documentation** | `/update-docs`, `/learn` |
+| **Learning** | `/learn`, `/instinct`, `/evolve` |
+| **Documentation** | `/update-docs` |
 | **Advanced** | `/ai-eval`, `/orchestrate`, `/create-command` |
 
 ## Complete Development Workflow
@@ -80,10 +82,12 @@ project-settings.md (context) + /design (command) → context-aware planning
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
-│  PHASE 5: DOCUMENTATION                                     │
+│  PHASE 5: DOCUMENTATION & LEARNING                          │
 ├─────────────────────────────────────────────────────────────┤
 │  /update-docs     → Sync all docs (README, codemaps, API)   │
 │  /learn           → Extract patterns from session           │
+│  /instinct        → View/manage learned instincts           │
+│  /evolve          → Cluster instincts into commands/agents  │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -105,6 +109,7 @@ project-settings.md (context) + /design (command) → context-aware planning
 | Build broken | `/build-fix` |
 | Before committing | `/code-review` → `/verify` |
 | After major changes | `/update-docs` |
+| Capturing learnings | `/learn` → `/instinct` → `/evolve` |
 | Testing AI features | `/ai-eval` |
 | Deploying | `/deploy` or `/deploy vercel` |
 | Creating custom workflows | `/create-command` |
@@ -121,7 +126,7 @@ For quick tasks:
 ```
 jetflux-sdk/
 ├── .claude/
-│   ├── commands/         # 15 slash commands (/sdk, /design, /run, /tdd, etc.)
+│   ├── commands/         # 17 slash commands (/sdk, /design, /run, /tdd, etc.)
 │   ├── agents/           # 13 enhanced agents
 │   ├── plans/            # Implementation plans (created by /design)
 │   ├── mcp-configs/      # MCP server configurations
@@ -195,12 +200,14 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 | | `--no-tdd` | Skip TDD even if plan says Yes |
 | | `--phase N` | Start from specific phase |
 | | `--dry-run` | Preview without executing |
+| | `--test-type <type>` | Override test types (unit/integration/e2e/all) |
 | `/tdd` | *(none)* | Run all tests |
 | | `unit` | Unit tests only |
 | | `integration` | Integration tests (NO MOCKING) |
 | | `e2e` | E2E tests with Playwright |
 | | `coverage` | Analyze coverage gaps |
 | | `--full` | All tests + coverage + no-stubs |
+| | `--from-plan` | Run tests based on plan's Test Strategy |
 | `/build-fix` | *(auto)* | Incrementally fixes build errors |
 | `/code-review` | *(none)* | Review local changes + dead code cleanup |
 | | `--no-clean` | Skip dead code cleanup |
@@ -239,7 +246,7 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 | | `custom <agents> <desc>` | Custom agent sequence |
 | `/create-command` | `[name]` | Interactive command wizard |
 
-### Documentation
+### Documentation & Learning
 
 | Command | Arguments/Flags | Description |
 |---------|-----------------|-------------|
@@ -251,6 +258,17 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 | | `preview` | Show without writing |
 | | `force` | Write without confirmation |
 | `/learn` | *(auto-detect)* | Extract patterns from session |
+| `/instinct` | *(none)* | Show instinct status (default) |
+| | `status` | Show all learned instincts |
+| | `export` | Export instincts for sharing |
+| | `import <file>` | Import instincts from file/URL |
+| | `--domain <name>` | Filter by domain |
+| | `--high-confidence` | Show only high-confidence instincts |
+| `/evolve` | *(none)* | Analyze and suggest evolutions |
+| | `--execute` | Create the evolved structures |
+| | `--dry-run` | Preview without creating |
+| | `--domain <name>` | Only evolve specific domain |
+| | `--threshold <n>` | Min instincts to cluster (default: 3) |
 
 </details>
 
@@ -258,7 +276,7 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 
 - [CLAUDE.md](CLAUDE.md) - Master directives and all commands
 - [project-settings.md](project-settings.md) - Project setup template
-- [.claude/commands/](.claude/commands/) - All 15 slash command files
+- [.claude/commands/](.claude/commands/) - All 17 slash command files
 
 ## Releases
 
@@ -266,6 +284,7 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v5.4.0** | Learning pipeline (`/learn` → `/instinct` → `/evolve`), intelligent test selection in `/design` and `/run` |
 | **v5.3.0** | New `/release` command for proper versioning and release workflow |
 | **v5.2** | Encapsulated `/setup-pm` into `/sdk` command (15 → 14 → 15 commands) |
 | **v5.1** | `/deploy` now captures deployment URL, logs to `.claude/deployments.log`, auto-runs `/update-docs --readme`, added `--no-docs` flag |

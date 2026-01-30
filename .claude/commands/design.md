@@ -72,7 +72,44 @@ Status: pending
 
 ## TDD Recommended: Yes/No
 **Reason:** [explanation of why TDD is or isn't recommended]
+
+## Test Strategy
+
+### Detected Code Types
+| Phase | Files | Code Type | Primary Tests | Secondary Tests |
+|-------|-------|-----------|---------------|-----------------|
+| 1 | lib/utils.ts | Utility | Unit | - |
+| 2 | components/Button.tsx | UI Component | Unit | E2E |
+| 3 | api/users.ts | API Endpoint | Integration (NO MOCK) | - |
+
+### Test Execution Plan
+1. Unit Tests (run first, fastest feedback)
+2. Integration Tests (NO MOCKING - real Docker services)
+3. E2E Tests (run last, verify user journeys)
 ```
+
+## Code Type Detection Heuristics
+
+The planner automatically detects code types based on file paths:
+
+| Path Pattern | Code Type | Primary Tests | Secondary Tests |
+|--------------|-----------|---------------|-----------------|
+| `components/`, `ui/` | UI Component | Unit | E2E |
+| `api/`, `handlers/`, `routes/` | API Endpoint | Integration (NO MOCK) | Unit |
+| `utils/`, `lib/`, `helpers/` | Utility | Unit | - |
+| `services/` | Service | Integration | Unit |
+| `models/`, `db/`, `prisma/` | Data Layer | Integration | - |
+| `pages/`, `app/` | Page/Route | E2E | Unit |
+| `hooks/` | React Hook | Unit | - |
+| `middleware/` | Middleware | Integration | Unit |
+
+### Test Type Definitions
+
+| Test Type | Purpose | Mocking Policy |
+|-----------|---------|----------------|
+| **Unit** | Test isolated functions/components | Mocking ALLOWED |
+| **Integration** | Test service interactions | NO MOCKING - real services |
+| **E2E** | Test user journeys | NO MOCKING - real infrastructure |
 
 ## TDD Recommendation Logic
 

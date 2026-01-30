@@ -52,4 +52,15 @@ next-env.d.ts
 .AppleDouble
 .LSOverride
 
+# Claude Code
+.claude/plans/
+.claude.backup*/
+.reports/
+
+# Build artifacts
+build-output.txt
+test-output.txt
+test-output.json
+
+
 nul
