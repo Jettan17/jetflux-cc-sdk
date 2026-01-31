@@ -57,6 +57,10 @@ next-env.d.ts
 .claude.backup*/
 .reports/
 
+# Instincts (raw learnings - use /evolve to promote to commands/skills/agents)
+.claude/commands/learned/
+.claude/homunculus/
+
 # Build artifacts
 build-output.txt
 test-output.txt
