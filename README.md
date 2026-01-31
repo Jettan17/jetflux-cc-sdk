@@ -1,4 +1,4 @@
-# JetFlux SDK v5.4.1
+# JetFlux SDK v5.4.2
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
@@ -284,6 +284,7 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v5.4.2** | `/sdk --update` now respects target project structure (won't re-add removed files) |
 | **v5.4.0** | Learning pipeline (`/learn` → `/instinct` → `/evolve`), intelligent test selection in `/design` and `/run` |
 | **v5.3.0** | New `/release` command for proper versioning and release workflow |
 | **v5.2** | Encapsulated `/setup-pm` into `/sdk` command (15 → 14 → 15 commands) |

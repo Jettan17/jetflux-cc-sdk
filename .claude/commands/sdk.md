@@ -181,20 +181,58 @@ Ask user if they want to backup before updating:
 Copy-Item -Path ".claude" -Destination ".claude.backup.YYYYMMDD" -Recurse
 ```
 
-#### Step 3: Update SDK Files
+#### Step 3: Update SDK Files (Existing Files Only)
 
-Copy latest SDK files, preserving project-specific content:
+**IMPORTANT:** The target project's directory structure is the source of truth. Only update files that already exist in the target project - do NOT add new files from the SDK.
+
+This ensures that files intentionally removed from a project (e.g., language-specific commands, e2e, no-stubs) are not re-added during updates.
+
+**Update Algorithm:**
 
 ```bash
 # PowerShell (Windows)
-# Update .claude folder (commands, agents, mcp-configs)
-Copy-Item -Path "[sdk]/.claude/*" -Destination ".claude/" -Recurse -Force
 
-# Update CLAUDE.md
+# 1. Get list of existing files in target project's .claude folder
+$existingFiles = Get-ChildItem -Path ".claude" -Recurse -File |
+    ForEach-Object { $_.FullName.Replace((Get-Location).Path + "\.claude\", "") }
+
+# 2. For each existing file, update it from SDK source (if SDK has it)
+foreach ($file in $existingFiles) {
+    $sdkFile = Join-Path "[sdk]/.claude" $file
+    $targetFile = Join-Path ".claude" $file
+
+    if (Test-Path $sdkFile) {
+        Copy-Item $sdkFile $targetFile -Force
+    }
+}
+
+# 3. Update CLAUDE.md (always update, it's the master directives)
 Copy-Item "[sdk]/CLAUDE.md" "CLAUDE.md" -Force
 
 # PRESERVE project-settings.md - don't overwrite (contains project settings)
 ```
+
+**Bash/Unix equivalent:**
+```bash
+# Find existing files and update only those
+find .claude -type f | while read target_file; do
+    relative_path="${target_file#.claude/}"
+    sdk_file="[sdk]/.claude/$relative_path"
+
+    if [ -f "$sdk_file" ]; then
+        cp "$sdk_file" "$target_file"
+    fi
+done
+
+# Update CLAUDE.md
+cp "[sdk]/CLAUDE.md" "CLAUDE.md"
+```
+
+**What this means:**
+- ✅ Files that exist in target AND SDK → Updated
+- ✅ Files that exist only in target (custom) → Preserved unchanged
+- ❌ Files that exist only in SDK (new) → NOT added
+- ✅ `project-settings.md` → Always preserved (never overwritten)
 
 **Important:** `project-settings.md` is NOT overwritten during updates to preserve project settings.
 
@@ -204,14 +242,18 @@ Display what was updated:
 ```
 SDK files updated successfully!
 
-Updated:
-- .claude/commands/ (15 files)
-- .claude/agents/ (13 files)
-- .claude/mcp-configs/ (5 files)
+Updated (existing files only):
+- .claude/commands/ (X files updated)
+- .claude/agents/ (X files updated)
+- .claude/mcp-configs/ (X files updated)
 - CLAUDE.md
 
-Preserved:
-- project-settings.md (project settings)
+Preserved (project-specific):
+- project-settings.md
+- Any custom files not in SDK
+
+Skipped (not in target project):
+- [List any SDK files not present in target]
 
 SDK Version: [commit hash or date]
 ```
