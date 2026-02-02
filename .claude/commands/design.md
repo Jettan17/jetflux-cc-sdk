@@ -9,14 +9,54 @@ customizations: "Plan-only mode, saves to .claude/plans/current.md, includes TDD
 
 This command creates a comprehensive implementation plan and saves it for later execution with `/run`. **Does NOT implement code.**
 
+---
+
+## ⚠️ CRITICAL BEHAVIOR RULES (MUST FOLLOW)
+
+### 1. NEVER Enter Plan Mode
+- **DO NOT** use `EnterPlanMode` tool
+- **DO NOT** switch to Claude's built-in plan mode
+- Work directly in the current conversation
+
+### 2. NEVER Execute Anything
+- **DO NOT** write code, create files (except the plan), or make changes
+- **DO NOT** run tests, builds, or any commands
+- **ONLY** write to `.claude/plans/current.md`
+- Execution is **exclusively** handled by `/run`
+
+### 3. Add vs. Overwrite Logic
+Before writing the plan, **CHECK** `.claude/plans/current.md`:
+
+| Plan File State | Action |
+|-----------------|--------|
+| File doesn't exist | CREATE new plan |
+| `Status: pending` | **ADD** new phases to existing plan |
+| `Status: in_progress` | **ADD** new phases to existing plan |
+| `Status: completed` | **OVERWRITE** with new plan |
+
+**How to ADD to an existing plan:**
+1. Read the existing plan from `.claude/plans/current.md`
+2. Keep all existing phases and content
+3. Add new phases after the existing ones (increment phase numbers)
+4. Update the title if needed to reflect combined scope
+5. Preserve original creation timestamp, add "Updated: [timestamp]"
+
+**How to OVERWRITE:**
+1. Replace entire plan file with new content
+2. Set new "Created: [timestamp]"
+3. Set `Status: pending`
+
+---
+
 ## What This Command Does
 
-1. **Restate Requirements** - Clarify what needs to be built
-2. **Identify Risks** - Surface potential issues and blockers
-3. **Create Step Plan** - Break down implementation into phases
-4. **Recommend TDD** - Determine if test-driven development is appropriate
-5. **Save Plan** - Write plan to `.claude/plans/current.md`
-6. **Stop** - Wait for user to run `/run` to execute
+1. **Check Current Plan** - Read `.claude/plans/current.md` to determine add vs. overwrite
+2. **Restate Requirements** - Clarify what needs to be built
+3. **Identify Risks** - Surface potential issues and blockers
+4. **Create Step Plan** - Break down implementation into phases
+5. **Recommend TDD** - Determine if test-driven development is appropriate
+6. **Save Plan** - Write/update `.claude/plans/current.md`
+7. **Stop** - Wait for user to run `/run` to execute
 
 ## When to Use
 
@@ -47,7 +87,8 @@ Plans are saved to `.claude/plans/current.md` with this structure:
 # Implementation Plan: [Title]
 
 Created: [timestamp]
-Status: pending
+Updated: [timestamp] (only if plan was added to)
+Status: pending | in_progress | completed
 
 ## Requirements
 [restated requirements in clear terms]
@@ -87,6 +128,18 @@ Status: pending
 2. Integration Tests (NO MOCKING - real Docker services)
 3. E2E Tests (run last, verify user journeys)
 ```
+
+## Plan Status Values
+
+| Status | Meaning | Set By | /design Behavior |
+|--------|---------|--------|------------------|
+| `pending` | Plan created, not yet executed | `/design` | **ADD** new phases |
+| `in_progress` | Plan is being executed by `/run` | `/run` | **ADD** new phases |
+| `completed` | Plan fully executed | `/run` | **OVERWRITE** with new plan |
+
+**Important:** Only `/run` should change status from `pending` → `in_progress` → `completed`. The `/design` command NEVER changes the status except when creating a brand new plan (sets to `pending`).
+
+---
 
 ## Code Type Detection Heuristics
 
@@ -186,8 +239,12 @@ Run `/run` to execute this plan.
 
 Before running `/run`, you can:
 - Edit `.claude/plans/current.md` directly
-- Run `/design` again with modifications: `/design modify: skip email for now`
+- Run `/design` again to **add more phases** (since status is still `pending`)
 - Ask for clarification: "What about handling rate limits?"
+
+After running `/run` (status becomes `completed`):
+- Running `/design` will **overwrite** with a completely new plan
+- Edit manually if you want to preserve and extend the old plan
 
 ## Integration with Other Commands
 

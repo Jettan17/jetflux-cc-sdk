@@ -173,6 +173,16 @@ All phases complete. Run `/verify` to validate.
 
 ## Plan Status Updates
 
+The `/run` command is **the ONLY command** that modifies plan status. Status transitions:
+
+| Transition | When |
+|------------|------|
+| `pending` → `in_progress` | When `/run` starts execution |
+| `in_progress` → `completed` | When ALL phases are done |
+| `in_progress` → `in_progress` | When stopped mid-execution (phases remain) |
+
+**Important:** After setting `Status: completed`, subsequent `/design` calls will **overwrite** the plan entirely.
+
 The `/run` command updates `.claude/plans/current.md` as it executes:
 
 ```markdown
@@ -195,6 +205,30 @@ Started: 2026-01-28T10:46:00Z
 - [x] Create notification service
 - [ ] Implement notification queue
 - [ ] Add retry logic
+```
+
+**When all phases complete:**
+
+```markdown
+# Implementation Plan: [Title]
+
+Created: 2026-01-28T10:00:00Z
+Status: completed
+Started: 2026-01-28T10:30:00Z
+Completed: 2026-01-28T11:15:00Z
+
+## Implementation Phases
+
+### Phase 1: Database Schema ✓
+Completed: 2026-01-28T10:45:00Z
+- [x] Add notifications table
+- [x] Add user_notification_preferences table
+
+### Phase 2: Notification Service ✓
+Completed: 2026-01-28T11:15:00Z
+- [x] Create notification service
+- [x] Implement notification queue
+- [x] Add retry logic
 ```
 
 ## Flags
