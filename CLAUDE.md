@@ -1,6 +1,6 @@
 # Claude Code SDK - Master Directives
 
-This project uses the **everything-claude-code (ECC)** plugin for structured development workflows.
+This project provides a structured Claude Code development environment with commands, agents, and workflows.
 
 ---
 
@@ -52,9 +52,6 @@ When initializing a new project:
 
 ## Quick Start
 
-### Plugin Status: INSTALLED ✓
-The everything-claude-code plugin is installed at `~/.claude/plugins/everything-claude-code/`
-
 ### Available Slash Commands (18 total)
 | Command | Description |
 |---------|-------------|
@@ -81,19 +78,19 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 
 ## Specialized Subagents
 
-### Core Agents
-| Agent | Purpose |
-|-------|---------|
-| **Planner** | Feature implementation planning |
-| **Architect** | System design decisions |
-| **TDD Guide** | Test-driven development methodology |
-| **Code Reviewer** | Quality and security assessment |
-| **Build Error Resolver** | Construction failure fixing |
-| **E2E Runner** | Playwright testing automation |
-| **Refactor Cleaner** | Dead code elimination |
-| **Doc Updater** | Documentation synchronization |
+### Core Agents (8) - in `.claude/agents/`
+| Agent | File | Purpose |
+|-------|------|---------|
+| **Planner** | `planner.md` | Feature implementation planning |
+| **Architect** | `architect.md` | System design decisions |
+| **TDD Guide** | `tdd-guide.md` | Test-driven development methodology |
+| **Code Reviewer** | `code-reviewer.md` | Quality and security assessment |
+| **Build Error Resolver** | `build-error-resolver.md` | Build/TypeScript error fixing |
+| **E2E Runner** | `e2e-runner.md` | Playwright testing automation |
+| **Refactor Cleaner** | `refactor-cleaner.md` | Dead code elimination |
+| **Doc Updater** | `doc-updater.md` | Documentation synchronization |
 
-### Enhanced Agents (13 total)
+### Enhanced Agents (13) - in `.claude/agents/`
 | Agent | Purpose | When to Use |
 |-------|---------|-------------|
 | **ultrathink-analyst** | Deep failure analysis | Complex features, systemic issues |
@@ -239,7 +236,7 @@ This applies to all scopes (Small/Medium/Large) and all project types.
 
 ## MCP Integrations
 
-### Base (from everything-claude-code)
+### Base
 - GitHub
 - Supabase
 - Vercel

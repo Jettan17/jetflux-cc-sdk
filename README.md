@@ -1,27 +1,20 @@
-# JetFlux SDK v1.6.0
+# JetFlux SDK v2.0.0
 
-A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
+A Claude Code development environment with structured workflows, specialized agents, and 18 slash commands. Built on [everything-claude-code](https://github.com/affaan-m/everything-claude-code) by affaan-m.
 
 ## Features
 
-- **13 Enhanced Agents** - Specialized agents for different task types
+- **21 Specialized Agents** - 8 core + 13 enhanced agents for different task types
 - **18 Slash Commands** - Streamlined development workflows
 - **6-Phase Development Workflow** - Structured approach from planning to deployment
 - **Learning Pipeline** - `/learn` → `/instinct` → `/evolve` for continuous improvement
 
 ## Quick Start
 
-### 1. Install Plugin (if not installed)
-```bash
-/plugin marketplace add affaan-m/everything-claude-code
-/plugin install everything-claude-code
-/plugin list  # verify installation
-```
-
-### 2. Project Initialization
+### 1. Project Initialization
 On first session, Claude prompts for project settings (scope, product type, objective). These are saved to `project-settings.md`.
 
-### 3. Running Commands
+### 2. Running Commands
 ```
 project-settings.md (context) + /design (command) → context-aware planning
 ```
@@ -131,7 +124,7 @@ For quick tasks:
 jetflux-sdk/
 ├── .claude/
 │   ├── commands/         # 18 slash commands (/sdk, /design, /run, /tdd, etc.)
-│   ├── agents/           # 13 enhanced agents
+│   ├── agents/           # 21 agents (8 core + 13 enhanced)
 │   ├── plans/            # Implementation plans (created by /design)
 │   ├── mcp-configs/      # MCP server configurations
 │   └── checkpoints.log   # Quick checkpoint index
@@ -144,10 +137,19 @@ jetflux-sdk/
 
 ## Available Agents
 
-### Core Agents
-Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, Refactor Cleaner, Doc Updater
+### Core Agents (8)
+| Agent | Purpose |
+|-------|---------|
+| planner | Feature implementation planning |
+| architect | System design decisions |
+| tdd-guide | TDD methodology (RED/GREEN/REFACTOR) |
+| code-reviewer | Quality and security review |
+| build-error-resolver | Build/TypeScript error fixing |
+| e2e-runner | Playwright E2E testing |
+| refactor-cleaner | Dead code elimination |
+| doc-updater | Documentation synchronization |
 
-### Enhanced Agents (13 total)
+### Enhanced Agents (13)
 | Agent | Purpose |
 |-------|---------|
 | ultrathink-analyst | Deep failure analysis |
@@ -290,6 +292,7 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v2.0.0** | Standalone SDK: 8 core agents transferred, ECC plugin dependency removed |
 | **v1.6.0** | Contextual workflow hints (`## Next Steps Output`) added to all 18 slash commands |
 | **v1.5.0** | New `/wordlist` command, all 18 commands in workflow, backfilled release notes |
 | **v1.4.3** | Strict `/design` behavior rules |
@@ -301,6 +304,10 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 | **v1.1.0** | `/deploy` captures deployment URL, auto-runs `/update-docs --readme` |
 | **v1.0.0** | Current architecture established (`project-settings.md`, session requirements) |
 | **v0.x** | Pre-release development (initial SDK through workflow restructuring) |
+
+## Credits
+
+Built on [everything-claude-code](https://github.com/affaan-m/everything-claude-code) by [affaan-m](https://github.com/affaan-m). Core agents and base command patterns adapted from the ECC plugin.
 
 ## License
 
