@@ -1,11 +1,11 @@
-# JetFlux SDK v5.4.3
+# JetFlux SDK v5.5.0
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
 ## Features
 
 - **13 Enhanced Agents** - Specialized agents for different task types
-- **17 Slash Commands** - Streamlined development workflows
+- **18 Slash Commands** - Streamlined development workflows
 - **6-Phase Development Workflow** - Structured approach from planning to deployment
 - **Learning Pipeline** - `/learn` → `/instinct` → `/evolve` for continuous improvement
 
@@ -26,7 +26,7 @@ On first session, Claude prompts for project settings (scope, product type, obje
 project-settings.md (context) + /design (command) → context-aware planning
 ```
 
-## Slash Commands (17 total)
+## Slash Commands (18 total)
 
 | Category | Commands |
 |----------|----------|
@@ -34,7 +34,7 @@ project-settings.md (context) + /design (command) → context-aware planning
 | **Quality** | `/verify`, `/checkpoint` |
 | **Operations** | `/sdk`, `/deploy`, `/release` |
 | **Learning** | `/learn`, `/instinct`, `/evolve` |
-| **Documentation** | `/update-docs` |
+| **Documentation** | `/update-docs`, `/wordlist` |
 | **Advanced** | `/ai-eval`, `/orchestrate`, `/create-command` |
 
 ## Complete Development Workflow
@@ -53,7 +53,8 @@ project-settings.md (context) + /design (command) → context-aware planning
 │  PHASE 1: SETUP & PLANNING                                  │
 ├─────────────────────────────────────────────────────────────┤
 │  /sdk            → Initialize new project OR update SDK     │
-│  /setup-pm       → Configure/change package manager         │
+│  /sdk --pm       → Configure/change package manager         │
+│  /wordlist       → Generate domain vocabulary reference     │
 │  /design         → Create plan (saves to .claude/plans/)    │
 │  /update-docs    → Document initial structure               │
 └─────────────────────────────────────────────────────────────┘
@@ -88,13 +89,15 @@ project-settings.md (context) + /design (command) → context-aware planning
 │  /learn           → Extract patterns from session           │
 │  /instinct        → View/manage learned instincts           │
 │  /evolve          → Cluster instincts into commands/agents  │
+│  /create-command  → Create new custom slash commands        │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
-│  PHASE 6: DEPLOYMENT                                        │
+│  PHASE 6: DEPLOYMENT & RELEASE                              │
 ├─────────────────────────────────────────────────────────────┤
 │  /deploy          → Docker, K8s, Vercel, Railway, etc.      │
 │  /verify          → Final validation                        │
+│  /release         → Version bump, changelog, git tag        │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -109,6 +112,7 @@ project-settings.md (context) + /design (command) → context-aware planning
 | Build broken | `/build-fix` |
 | Before committing | `/code-review` → `/verify` |
 | After major changes | `/update-docs` |
+| Need domain vocabulary | `/wordlist` or `/wordlist "domain name"` |
 | Capturing learnings | `/learn` → `/instinct` → `/evolve` |
 | Testing AI features | `/ai-eval` |
 | Deploying | `/deploy` or `/deploy vercel` |
@@ -126,7 +130,7 @@ For quick tasks:
 ```
 jetflux-sdk/
 ├── .claude/
-│   ├── commands/         # 17 slash commands (/sdk, /design, /run, /tdd, etc.)
+│   ├── commands/         # 18 slash commands (/sdk, /design, /run, /tdd, etc.)
 │   ├── agents/           # 13 enhanced agents
 │   ├── plans/            # Implementation plans (created by /design)
 │   ├── mcp-configs/      # MCP server configurations
@@ -257,6 +261,8 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 | | `--all` | Full documentation suite |
 | | `preview` | Show without writing |
 | | `force` | Write without confirmation |
+| `/wordlist` | *(auto-detect)* | Detect domain from project, generate vocab card |
+| | `{domain}` | Generate vocabulary for specific domain |
 | `/learn` | *(auto-detect)* | Extract patterns from session |
 | `/instinct` | *(none)* | Show instinct status (default) |
 | | `status` | Show all learned instincts |
@@ -276,7 +282,7 @@ Planner, Architect, TDD Guide, Code Reviewer, Build Error Resolver, E2E Runner, 
 
 - [CLAUDE.md](CLAUDE.md) - Master directives and all commands
 - [project-settings.md](project-settings.md) - Project setup template
-- [.claude/commands/](.claude/commands/) - All 17 slash command files
+- [.claude/commands/](.claude/commands/) - All 18 slash command files
 
 ## Releases
 
@@ -284,9 +290,13 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v5.5.0** | New `/wordlist` command for domain vocabulary reference cards, all 18 commands in workflow diagram, backfilled missing release notes |
+| **v5.4.3** | Strict `/design` behavior rules (never enters plan mode, never executes code) |
 | **v5.4.2** | `/sdk --update` now respects target project structure (won't re-add removed files) |
+| **v5.4.1** | Exclude raw instincts from git tracking (cleaner repos) |
 | **v5.4.0** | Learning pipeline (`/learn` → `/instinct` → `/evolve`), intelligent test selection in `/design` and `/run` |
 | **v5.3.0** | New `/release` command for proper versioning and release workflow |
+| **v5.2.1** | `/release` command fix - learned from forgetting README version bump |
 | **v5.2** | Encapsulated `/setup-pm` into `/sdk` command (15 → 14 → 15 commands) |
 | **v5.1** | `/deploy` now captures deployment URL, logs to `.claude/deployments.log`, auto-runs `/update-docs --readme`, added `--no-docs` flag |
 | **v5.0** | Consolidated `instructions.md` → `project-settings.md`, removed 100+ lines of duplication, added Session Requirements to CLAUDE.md |

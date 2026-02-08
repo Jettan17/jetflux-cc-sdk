@@ -55,7 +55,7 @@ When initializing a new project:
 ### Plugin Status: INSTALLED ✓
 The everything-claude-code plugin is installed at `~/.claude/plugins/everything-claude-code/`
 
-### Available Slash Commands (17 total)
+### Available Slash Commands (18 total)
 | Command | Description |
 |---------|-------------|
 | `/sdk` | Initialize new project, update SDK files, configure package manager |
@@ -69,6 +69,7 @@ The everything-claude-code plugin is installed at `~/.claude/plugins/everything-
 | `/deploy` | Deploy to Docker, K8s, Vercel, Railway, Fly.io |
 | `/release` | Version release with proper versioning and documentation updates |
 | `/update-docs` | Sync all documentation (README, codemaps, API) |
+| `/wordlist` | Generate domain-specific vocabulary reference card for precise prompting |
 | `/learn` | Pattern extraction with auto-detection |
 | `/instinct` | Manage instincts (status, export, import) |
 | `/evolve` | Cluster instincts into commands/skills/agents |
@@ -272,6 +273,7 @@ All commands are in `.claude/commands/`:
 | `/deploy` | Operations | Deploy to Docker, K8s, Vercel, Railway, etc. |
 | `/release` | Operations | Version release with documentation updates |
 | `/update-docs` | Documentation | Sync all docs (README, codemaps, API) |
+| `/wordlist` | Documentation | Domain vocabulary reference card |
 | `/learn` | Learning | Pattern extraction (auto-detect) |
 | `/instinct` | Learning | Manage instincts (status, export, import) |
 | `/evolve` | Learning | Cluster instincts into commands/skills/agents |
@@ -330,6 +332,11 @@ When starting a new project, configure these in `project-settings.md`:
 /build-fix        # Fix build errors
 /update-docs      # Sync all documentation
 /orchestrate      # Multi-agent orchestration
+
+# Vocabulary & Prompting
+/wordlist             # Auto-detect domain, generate vocab card
+/wordlist nlp         # Specific tech domain
+/wordlist "biology"   # Any domain (tech or non-tech)
 
 # Learning Pipeline: /learn → /instinct → /evolve
 /learn              # Extract patterns from session
