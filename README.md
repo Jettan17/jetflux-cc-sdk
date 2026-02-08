@@ -1,4 +1,4 @@
-# JetFlux SDK v5.5.0
+# JetFlux SDK v1.5.0
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
@@ -290,24 +290,16 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
-| **v5.5.0** | New `/wordlist` command for domain vocabulary reference cards, all 18 commands in workflow diagram, backfilled missing release notes |
-| **v5.4.3** | Strict `/design` behavior rules (never enters plan mode, never executes code) |
-| **v5.4.2** | `/sdk --update` now respects target project structure (won't re-add removed files) |
-| **v5.4.1** | Exclude raw instincts from git tracking (cleaner repos) |
-| **v5.4.0** | Learning pipeline (`/learn` → `/instinct` → `/evolve`), intelligent test selection in `/design` and `/run` |
-| **v5.3.0** | New `/release` command for proper versioning and release workflow |
-| **v5.2.1** | `/release` command fix - learned from forgetting README version bump |
-| **v5.2** | Encapsulated `/setup-pm` into `/sdk` command (15 → 14 → 15 commands) |
-| **v5.1** | `/deploy` now captures deployment URL, logs to `.claude/deployments.log`, auto-runs `/update-docs --readme`, added `--no-docs` flag |
-| **v5.0** | Consolidated `instructions.md` → `project-settings.md`, removed 100+ lines of duplication, added Session Requirements to CLAUDE.md |
-| **v4.0.1** | Fixed `/sdk` to include Connection Type question |
-| **v4.0** | New `/run` command, restructured workflow (`/design` → `/run` → `/tdd`) |
-| **v3.2** | Pre-restructure stable release |
-| **v3.1** | Synced project init question types |
-| **v3.0** | Fixed command name clash with CC CLI (`/plan`→`/design`, `/init`→`/sdk`) - BREAKING |
-| **v2.0** | Major command consolidation (20+ → 14 commands) |
-| **v1.1** | Added `/update-readme`, improved project init |
-| **v1.0** | Initial streamlined SDK, core workflow established |
+| **v1.5.0** | New `/wordlist` command, all 18 commands in workflow, backfilled release notes |
+| **v1.4.3** | Strict `/design` behavior rules |
+| **v1.4.2** | `/sdk --update` respects target project structure |
+| **v1.4.1** | Exclude raw instincts from git tracking |
+| **v1.4.0** | Learning pipeline (`/learn` → `/instinct` → `/evolve`), intelligent test selection |
+| **v1.3.0** | New `/release` command |
+| **v1.2.0** | Encapsulated `/setup-pm` into `/sdk` command |
+| **v1.1.0** | `/deploy` captures deployment URL, auto-runs `/update-docs --readme` |
+| **v1.0.0** | Current architecture established (`project-settings.md`, session requirements) |
+| **v0.x** | Pre-release development (initial SDK through workflow restructuring) |
 
 ## License
 
