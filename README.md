@@ -1,4 +1,4 @@
-# JetFlux SDK v1.5.0
+# JetFlux SDK v1.6.0
 
 A Claude Code development environment using **everything-claude-code (ECC)** for structured development workflows.
 
@@ -290,6 +290,7 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v1.6.0** | Contextual workflow hints (`## Next Steps Output`) added to all 18 slash commands |
 | **v1.5.0** | New `/wordlist` command, all 18 commands in workflow, backfilled release notes |
 | **v1.4.3** | Strict `/design` behavior rules |
 | **v1.4.2** | `/sdk --update` respects target project structure |

@@ -256,3 +256,14 @@ To skip the automatic docs update:
 - `/code-review` - Review before deploying
 - `/tdd` - Ensure tests pass before deploy
 - `/update-docs` - Sync documentation (runs automatically post-deploy)
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /update-docs - Sync documentation with deployment info
+ Or: /release - Create a version release
+---
+```

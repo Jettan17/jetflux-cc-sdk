@@ -174,3 +174,14 @@ This command automatically escalates to specialized agents when:
 - **intermediate-reviewer**: Use for milestone reviews and progress validation
 - **code-reviewer**: Use to ensure quality before creating checkpoint
 - **testing-specialist**: Use to verify test coverage meets standards
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /deploy - Deploy the application
+ Or: /run - Continue development with next feature
+---
+```

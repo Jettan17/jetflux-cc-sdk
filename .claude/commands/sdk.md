@@ -334,3 +334,14 @@ Available commands:
 - For existing projects: updates SDK files only, preserves `project-settings.md`
 - Framework initialization may require user interaction (prompts)
 - Always verify `project-settings.md` after initialization
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /design - Plan your first feature
+ Or: /wordlist - Build domain vocabulary for precise prompting
+---
+```

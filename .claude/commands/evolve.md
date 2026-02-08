@@ -128,3 +128,13 @@ Run `/evolve --execute` to create these files.
 
 - `/learn` - Extract patterns from session (creates instincts)
 - `/instinct` - View and manage instincts
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /create-command - Create a new custom command from evolved patterns
+---
+```

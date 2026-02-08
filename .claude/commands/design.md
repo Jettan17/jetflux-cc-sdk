@@ -276,3 +276,15 @@ This command automatically escalates to specialized agents when:
 - `/tdd` - Run tests (after implementation)
 - `/verify` - Full verification after implementation
 - `/code-review` - Review completed implementation
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /run - Execute this plan
+ Or: /design "add phase" - Extend plan with additional phases
+ Or: /wordlist - Build domain vocabulary before implementation
+---
+```

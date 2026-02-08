@@ -212,3 +212,14 @@ This command automatically escalates to specialized agents when:
 ### Escalation Triggers
 - **deep-reflector**: Always invoked to analyze session context and format output
 - **documentation-validator**: Use to ensure learned patterns are accurate and well-formatted
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /instinct status - View all learned instincts
+ Or: /evolve - Cluster instincts into commands, skills, or agents
+---
+```

@@ -69,3 +69,13 @@ description: [Your description here]
 - Automating repetitive tasks
 - Building team-specific commands
 - Prototyping new command ideas
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Your new command is ready. Type /<command-name> to use it.
+---
+```

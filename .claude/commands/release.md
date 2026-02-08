@@ -119,3 +119,14 @@ Release URL: https://github.com/user/repo/releases/tag/v5.2.1
 - Follows semver conventions
 - Creates annotated git tags
 - Generates release notes from commit history if not provided
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /learn - Extract patterns from this development cycle
+ Or: /update-docs - Ensure all documentation is current
+---
+```

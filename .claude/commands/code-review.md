@@ -195,3 +195,15 @@ This command automatically escalates to specialized agents when:
 - **gh-manager**: Use for GitHub PR/issue operations requiring API access
 - **requirements-analyst**: Use for complex issue analysis requiring requirement breakdown
 - **architect**: Use for significant structural changes during dead code cleanup
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /checkpoint - Save reviewed state and commit
+ Or: /deploy - Deploy to target platform
+ Or: /build-fix - Fix any issues found during review
+---
+```

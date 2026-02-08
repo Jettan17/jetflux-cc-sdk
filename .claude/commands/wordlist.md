@@ -250,3 +250,13 @@ Example: "How do I reduce headway bunching on high-ridership routes?"
 
 - `/design` - Plan implementation using domain vocabulary
 - `/learn` - Extract patterns and terminology from your session
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /design - Plan implementation using this vocabulary
+---
+```

@@ -327,3 +327,15 @@ This is useful after `/design` to validate tests exist before running `/run`.
 /tdd coverage          →  Check coverage gaps
 /verify                →  Full verification
 ```
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /verify - Run full verification (build, types, lint, tests)
+ Or: /tdd coverage - Analyze test coverage gaps
+ Or: /code-review - Review code quality and security
+---
+```

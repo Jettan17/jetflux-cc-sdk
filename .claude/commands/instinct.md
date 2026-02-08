@@ -210,3 +210,14 @@ Import 8 new, update 1, skip 3?
 
 - `/learn` - Extract patterns from session (creates instincts)
 - `/evolve` - Cluster instincts into commands/skills/agents
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /evolve - Cluster mature instincts into commands, skills, or agents
+ Or: /learn - Extract more patterns from the current session
+---
+```

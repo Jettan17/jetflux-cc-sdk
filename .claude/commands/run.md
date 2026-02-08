@@ -306,3 +306,15 @@ Running tests for Phase 2...
 - `/build-fix` - Fix build errors if they occur
 - `/verify` - Full verification after completion
 - `/checkpoint` - Save progress state
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /tdd - Run full test suite to verify implementation
+ Or: /build-fix - Fix any build errors encountered
+ Or: /checkpoint - Save current progress
+---
+```

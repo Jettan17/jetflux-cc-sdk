@@ -117,3 +117,15 @@ If any critical issues, list them with fix suggestions.
 - `/tdd` - Run tests with TDD workflow
 - `/build-fix` - Fix build errors
 - `/code-review` - Quality review before PR
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /code-review - Quality and security review before PR
+ Or: /checkpoint - Save verified state
+ Or: /deploy - Deploy if verification passed
+---
+```

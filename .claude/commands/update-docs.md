@@ -239,3 +239,14 @@ Identifies documentation not modified in 90+ days:
 - `/design` - Plan features (generates initial docs)
 - `/code-review` - Review changes (may need doc updates)
 - `/learn` - Extract patterns (updates learnings)
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /release - Create a version release
+ Or: /verify - Verify documentation changes build correctly
+---
+```

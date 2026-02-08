@@ -205,3 +205,14 @@ Created: 2026-01-27
 - `/tdd` - Standard code testing (use for non-AI features)
 - `/design` - Plan AI feature implementation
 - `/code-review` - Review AI feature code quality
+
+## Next Steps Output
+
+**After completing this command, always display the following block at the end of your output:**
+
+```
+---
+Next: /design - Plan implementation based on eval results
+ Or: /tdd - Run standard tests alongside AI evals
+---
+```
