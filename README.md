@@ -1,4 +1,4 @@
-# JetFlux SDK v2.0.0
+# JetFlux SDK v2.1.0
 
 A Claude Code development environment with structured workflows, specialized agents, and 18 slash commands. Built on [everything-claude-code](https://github.com/affaan-m/everything-claude-code) by affaan-m.
 
@@ -11,8 +11,11 @@ A Claude Code development environment with structured workflows, specialized age
 
 ## Quick Start
 
-### 1. Project Initialization
-On first session, Claude prompts for project settings (scope, product type, objective). These are saved to `project-settings.md`.
+### 1. New Project
+```
+/sdk ../my-project   → gather settings → create structure → generate docs/plan.md → stop
+```
+No code is written. Review `docs/plan.md`, then run `/run` to implement phase by phase.
 
 ### 2. Running Commands
 ```
@@ -45,10 +48,11 @@ project-settings.md (context) + /design (command) → context-aware planning
 ┌─────────────────────────────────────────────────────────────┐
 │  PHASE 1: SETUP & PLANNING                                  │
 ├─────────────────────────────────────────────────────────────┤
-│  /sdk            → Initialize new project OR update SDK     │
+│  /sdk            → Create structure + plan (no code yet)    │
+│  /sdk --update   → Refresh SDK files in existing project    │
 │  /sdk --pm       → Configure/change package manager         │
 │  /wordlist       → Generate domain vocabulary reference     │
-│  /design         → Create plan (saves to .claude/plans/)    │
+│  /design         → Create/update plan for a feature         │
 │  /update-docs    → Document initial structure               │
 └─────────────────────────────────────────────────────────────┘
                             ↓
@@ -98,7 +102,8 @@ project-settings.md (context) + /design (command) → context-aware planning
 
 | When | Use |
 |------|-----|
-| Starting a new project | `/sdk` (full setup) |
+| Starting a new project | `/sdk` (structure + plan only, no code) |
+| Implementing the plan | `/run` (phase by phase) |
 | Updating SDK in existing project | `/sdk --update` (refreshes SDK files) |
 | Adding a feature | `/design` → `/run` → `/tdd` → `/checkpoint` |
 | Complex cross-cutting work | `/orchestrate` (coordinates multiple phases) |
@@ -178,9 +183,8 @@ jetflux-sdk/
 | `/sdk` | `[path]` | Target directory (optional) |
 | | `--update` | Force update mode (refresh SDK files) |
 | | `--no-git` | Skip git initialization |
-| | `--no-framework` | Skip framework scaffolding |
 | | `--no-backup` | Skip backup prompt during updates |
-| | `--pm <manager>` | Set package manager (pnpm/npm/yarn/bun) |
+| | `--pm <manager>` | Set package manager (pnpm/npm/yarn/bun/pip) |
 | | `--pm detect` | Auto-detect from lockfiles |
 | `/deploy` | *(auto-detect)* | Auto-detect best platform |
 | | `docker` | Docker/Docker Compose |
@@ -292,6 +296,7 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v2.1.0** | `/sdk` no longer scaffolds frameworks or installs deps — creates structure + `docs/plan.md` only |
 | **v2.0.0** | Standalone SDK: 8 core agents transferred, ECC plugin dependency removed |
 | **v1.6.0** | Contextual workflow hints (`## Next Steps Output`) added to all 18 slash commands |
 | **v1.5.0** | New `/wordlist` command, all 18 commands in workflow, backfilled release notes |

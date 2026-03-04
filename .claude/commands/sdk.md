@@ -33,6 +33,8 @@ The command automatically detects whether to run in **new project** or **update*
 
 ### For NEW Projects
 
+**IMPORTANT:** `/sdk` only creates structure and a plan. It does NOT implement any code, install dependencies, or scaffold frameworks. Implementation happens later with `/run`.
+
 #### Step 1: Gather Project Settings
 
 Use AskUserQuestion to collect (max 4 questions per call):
@@ -41,7 +43,7 @@ Use AskUserQuestion to collect (max 4 questions per call):
 | Setting | Options |
 |---------|---------|
 | **Scope** | Small / Medium / Large |
-| **Product Type** | Web / Mobile / Desktop |
+| **Product Type** | Web / Mobile / Desktop / CLI |
 | **Usage** | Commercial / Personal |
 | **Connection Type** | Local / Public |
 
@@ -49,69 +51,70 @@ Use AskUserQuestion to collect (max 4 questions per call):
 | Setting | Options |
 |---------|---------|
 | **Tech Stack** | Next.js / Astro / React / Vue / Plain HTML / Python / Flutter |
-| **Package Manager** | pnpm (Recommended) / npm / yarn / bun |
-| **Visual Style** | Minimal / Dark / Colorful / Professional |
+| **Package Manager** | pnpm (Recommended) / npm / yarn / bun / pip+uv |
+| **Visual Style** | Minimal / Dark / Colorful / Professional (skip if CLI/backend) |
 
 Then ask free-text questions (as regular questions, not AskUserQuestion):
-- Objective/Use-case
+- Project name / directory path (e.g. `../my-project`)
+- Objective/Use-case and any requirements the user has already described
 - Data sources (optional)
 - External integrations (optional)
 
-### Step 2: Create Project Structure
+#### Step 2: Create Directory + SDK Files
 
-If path specified, create the directory:
-```bash
-mkdir [project-path]
-```
-
-### Step 3: Copy SDK Files
-
-Copy from JetFlux SDK to new project:
-- `.claude/` folder (commands, agents, mcp-configs)
-- `CLAUDE.md` (master directives)
-- `project-settings.md` (template)
+Create the project directory and copy SDK files:
 
 ```bash
-# PowerShell (Windows)
-Copy-Item -Path "[sdk]/.claude" -Destination "[project]/.claude" -Recurse
-Copy-Item "[sdk]/CLAUDE.md" "[project]/CLAUDE.md"
-Copy-Item "[sdk]/project-settings.md" "[project]/project-settings.md"
+mkdir -p [project-path]
+
+# Copy .claude folder, CLAUDE.md from SDK
+cp -r [sdk]/.claude [project]/.claude
+cp [sdk]/CLAUDE.md [project]/CLAUDE.md
+cp [sdk]/project-settings.md [project]/project-settings.md
 ```
 
-### Step 4: Initialize Framework
+#### Step 3: Create Skeleton Structure
 
-Based on tech stack selection:
+Create only the top-level folders and config/boilerplate files appropriate for the tech stack. Do NOT write any implementation code.
 
-| Stack | Command |
-|-------|---------|
-| **Next.js** | `npx create-next-app@latest . --typescript --tailwind --eslint --app` |
-| **Astro** | `npm create astro@latest . -- --template minimal` |
-| **React (Vite)** | `npm create vite@latest . -- --template react-ts` |
-| **Vue** | `npm create vue@latest .` |
-| **Plain HTML** | Create basic `index.html`, `styles.css`, `script.js` |
-| **Python** | `python -m venv venv && pip install -r requirements.txt` |
-| **Flutter** | `flutter create .` |
-
-**Note:** Some commands require user interaction. Inform user and run command.
-
-### Step 4b: Configure Package Manager
-
-Based on package manager selection, save preference:
-
-```bash
-# Create .claude/package-manager.json
-echo '{"packageManager": "[selected]"}' > .claude/package-manager.json
+**Python projects:**
+```
+src/[package-name]/
+  __init__.py          # empty
+  [module]/
+    __init__.py        # empty
+tests/
+  phase1/
+    __init__.py
+  phase2/
+    __init__.py
+  ...
+docs/
+  plan.md              # generated in Step 5
+pyproject.toml         # with dependencies listed (not installed)
+.env.example           # token/key placeholders
+.gitignore
+README.md              # status table, usage placeholder
 ```
 
-**Detection Priority** (when determining which package manager to use):
-1. Environment variable: `CLAUDE_PACKAGE_MANAGER`
-2. Project config: `.claude/package-manager.json`
-3. `package.json`: `packageManager` field
-4. Lock file presence (package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb)
-5. Global config: `~/.claude/package-manager.json`
-6. Fallback: pnpm > bun > yarn > npm
+**Node/Web projects:**
+```
+src/
+  [relevant dirs based on stack]/
+docs/
+  plan.md
+package.json           # with scripts and deps listed (not installed)
+.env.example
+.gitignore
+README.md
+```
 
-### Step 5: Update project-settings.md
+**Rules:**
+- Every `__init__.py` or `index.ts` is empty — no implementation
+- `pyproject.toml` / `package.json` lists dependencies but does NOT run install
+- No framework CLI scaffolding (`create-next-app`, `flutter create`, etc.)
+
+#### Step 4: Update project-settings.md
 
 Replace the Project Settings section with gathered values:
 
@@ -137,7 +140,7 @@ Replace the Project Settings section with gathered values:
 [User's objective]
 
 ## Visual Style
-[Selected style]
+[Selected style or "N/A"]
 
 ## Data Sources
 [User's data sources or "None specified"]
@@ -146,13 +149,54 @@ Replace the Project Settings section with gathered values:
 [User's integrations or "None initially"]
 ```
 
-### Step 6: Generate README.md
+#### Step 5: Generate docs/plan.md
 
-Run `/update-docs --readme` logic to create project-specific README.
+Create a phased implementation plan based on the project requirements. Each phase must:
+- Be independently testable (the user can stop after any phase and verify it works)
+- End with a concrete **Test Checkpoint** showing exact commands to verify completion
+- Build on the previous phase (no phase assumes future phases exist)
 
-#### Step 7: Initialize Git (Optional)
+**Plan structure:**
 
-Ask user if they want to initialize git:
+```markdown
+# [Project Name] — Implementation Plan
+
+## PHASE 1A — [Name]
+**Days X–Y | ~Z hrs**
+
+### Tasks
+- [ ] ...
+
+### Files Created
+- `path/to/file.py` — purpose
+
+### Test Checkpoint ✓
+\`\`\`bash
+[exact command to verify this phase is done]
+# PASS: [what success looks like]
+\`\`\`
+
+---
+
+## PHASE 1B — [Name]
+...
+```
+
+Segment phases to match the project scope:
+- **Small**: 2–4 phases total
+- **Medium**: 6–10 phases total
+- **Large**: 10–15 phases total
+
+#### Step 6: Generate README.md
+
+Create a minimal README with:
+- One-line description
+- Status table listing all phases (all "⬜ Not started")
+- Installation placeholder (fill in after `/run`)
+- Usage placeholder
+
+#### Step 7: Initialize Git
+
 ```bash
 git init
 git add .
@@ -265,21 +309,24 @@ SDK Version: [commit hash or date]
 After completion, display:
 
 ```
-Project initialized successfully!
+Project initialized!
 
 Location: [full path]
 Tech Stack: [stack]
 Scope: [scope]
+Phases: [N phases in docs/plan.md]
+
+Structure created — no code implemented yet.
 
 Next steps:
 1. cd [project-path]
-2. npm install (or appropriate command)
-3. npm run dev
+2. Review docs/plan.md
+3. Run /run to start Phase 1A
 
 Available commands:
-- /design   - Plan features
-- /tdd      - Test-driven development
-- /verify   - Run checks
+- /run      - Implement the plan (Phase by Phase)
+- /tdd      - Run tests after each phase
+- /verify   - Full verification
 ```
 
 ## Arguments
@@ -287,9 +334,8 @@ Available commands:
 - `[path]` - Optional. Project directory path. Defaults to current directory.
 - `--update` - Force update mode (refresh SDK files in existing project)
 - `--no-git` - Skip git initialization (new projects only)
-- `--no-framework` - Skip framework scaffolding (new projects only)
 - `--no-backup` - Skip backup prompt during updates
-- `--pm <manager>` - Set package manager directly (pnpm/npm/yarn/bun)
+- `--pm <manager>` - Set package manager directly (pnpm/npm/yarn/bun/pip)
 - `--pm detect` - Auto-detect package manager from lockfiles
 
 ## Agent Escalation
@@ -302,14 +348,11 @@ Available commands:
 ## Examples
 
 ```bash
-# NEW PROJECT: Interactive setup in new folder
-/sdk my-portfolio
+# NEW PROJECT: Create in a sibling directory (recommended)
+/sdk ../my-portfolio
 
-# NEW PROJECT: Setup in current empty directory
+# NEW PROJECT: Interactive (will ask for path)
 /sdk
-
-# NEW PROJECT: Skip framework init (just add SDK files)
-/sdk --no-framework
 
 # UPDATE: Refresh SDK files in current project
 /sdk --update
@@ -321,7 +364,7 @@ Available commands:
 /sdk --update --no-backup
 
 # NEW PROJECT: Specify package manager directly
-/sdk my-project --pm pnpm
+/sdk ../my-project --pm pnpm
 
 # NEW PROJECT: Auto-detect package manager from existing lockfiles
 /sdk --pm detect
@@ -330,10 +373,11 @@ Available commands:
 ## Notes
 
 - Command auto-detects new vs existing projects based on `.claude/` folder presence
-- For new projects: gathers settings, initializes framework, copies SDK files
+- For new projects: gathers settings → creates skeleton structure → generates plan → stops. No code is implemented.
 - For existing projects: updates SDK files only, preserves `project-settings.md`
-- Framework initialization may require user interaction (prompts)
-- Always verify `project-settings.md` after initialization
+- Never run framework CLIs (`create-next-app`, `flutter create`, etc.) — structure is created manually
+- Never install dependencies — user installs after reviewing the plan
+- Always verify `project-settings.md` and `docs/plan.md` after initialization
 
 ## Next Steps Output
 
