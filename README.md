@@ -1,4 +1,4 @@
-# JetFlux SDK v2.1.0
+# JetFlux SDK v2.2.0
 
 A Claude Code development environment with structured workflows, specialized agents, and 18 slash commands. Built on [everything-claude-code](https://github.com/affaan-m/everything-claude-code) by affaan-m.
 
@@ -296,6 +296,7 @@ See [GitHub Releases](https://github.com/Jettan17/jetflux-cc-sdk/releases) for f
 
 | Version | Highlights |
 |---------|------------|
+| **v2.2.0** | "Commercial" renamed to "Public" across init; CLI/Developer Tooling added as product type; Supabase removed from base MCPs |
 | **v2.1.0** | `/sdk` no longer scaffolds frameworks or installs deps — creates structure + `docs/plan.md` only |
 | **v2.0.0** | Standalone SDK: 8 core agents transferred, ECC plugin dependency removed |
 | **v1.6.0** | Contextual workflow hints (`## Next Steps Output`) added to all 18 slash commands |

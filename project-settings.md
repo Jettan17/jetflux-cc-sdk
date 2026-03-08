@@ -4,7 +4,7 @@
 
 ## Final Product
 
-## Commercial or Personal Use
+## Personal or Public Use
 
 ## Objective/Use-Case
 
@@ -39,11 +39,12 @@ Options:
 - **Web**: Browser-based application
 - **Mobile**: iOS/Android app
 - **Desktop**: Native desktop application
+- **CLI / Developer Tooling**: Command-line tools, SDKs, or dev utilities
 
 ### Question 3: Usage Type
 Options:
-- **Personal**: Local-first, can use open source freely
-- **Commercial**: Production-ready, scalable, with deployment
+- **Public**: Can be expanded to other users, scalable and shareable
+- **Personal**: Mostly for my own use, local-first
 
 ### Question 4: Connection Type
 Options:
@@ -93,9 +94,9 @@ Update the "Project Settings" section at the top of this file with the answers.
 **Personal Use:**
 - Local-first, deploy later
 - Can use open source freely
-- Fork and copy from other sources (non-commercial)
+- Fork and copy from other sources (personal only)
 
-**Commercial Use:**
+**Public Use:**
 - Research value propositions and UNIQUE SELLING POINTS
 - Scrutinize and critique scenarios to improve the solution
 - Evaluate with AAA framework:

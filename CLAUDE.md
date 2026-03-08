@@ -238,7 +238,6 @@ This applies to all scopes (Small/Medium/Large) and all project types.
 
 ### Base
 - GitHub
-- Supabase
 - Vercel
 - Railway
 
@@ -285,7 +284,7 @@ All commands are in `.claude/commands/`:
 When starting a new project, configure these in `project-settings.md`:
 - **Scope**: Small / Medium / Large
 - **Final Product**: Web / Mobile / Desktop / Open-Ended
-- **Commercial or Personal Use**
+- **Personal or Public Use**
 - **Objective/Use-Case**
 - **Connection Type**: Local / Public
 - **Data Sources**

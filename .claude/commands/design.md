@@ -218,7 +218,6 @@ Agent (planner):
 ## Dependencies
 - Redis (for queue)
 - Email service (SendGrid/Resend)
-- Supabase real-time subscriptions
 
 ## Risks
 - HIGH: Email deliverability (SPF/DKIM required)

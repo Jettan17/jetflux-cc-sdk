@@ -43,8 +43,8 @@ Use AskUserQuestion to collect (max 4 questions per call):
 | Setting | Options |
 |---------|---------|
 | **Scope** | Small / Medium / Large |
-| **Product Type** | Web / Mobile / Desktop / CLI |
-| **Usage** | Commercial / Personal |
+| **Product Type** | Web / Mobile / Desktop / CLI / Developer Tooling |
+| **Usage** | Public / Personal |
 | **Connection Type** | Local / Public |
 
 **Batch 2:**
@@ -127,7 +127,7 @@ Replace the Project Settings section with gathered values:
 ## Final Product
 [Selected product type] - [Selected tech stack]
 
-## Commercial or Personal Use
+## Personal or Public Use
 [Selected usage]
 
 ## Local or Public Connection
